@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 const newsData = [
   'Simone Benanchietti',
   'Gabriele Mininni',
-  'Elia Apicella',
   'Anita Cappello',
   'Michele Lomartire',
   'Daniele Corn',
@@ -11,6 +10,7 @@ const newsData = [
   'Giulio Finocchiaro',
   'Matteo Messori',
   'James Ayres',
+  'Elia Apicella',
 ];
 
 export default function About() {

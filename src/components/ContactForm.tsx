@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
+import { useTranslation } from 'react-i18next';
 
 function ContactForm() {
   const [state, handleSubmit] = useForm("xwpqbazz");
   const [emailError, setEmailError] = useState("");
+  const { t } = useTranslation();
 
   if (state.succeeded) {
     return (
@@ -11,7 +13,7 @@ function ContactForm() {
         <div className="relative">
           <div className="absolute inset-0 bg-white/5 blur-xl" />
           <p className="relative text-white text-center py-8 sm:py-12 px-4 sm:px-8 font-light tracking-wide text-sm sm:text-base">
-            Message sent successfully. We'll be in touch.
+            {t('contact.success')}
           </p>
         </div>
       </div>
@@ -24,7 +26,7 @@ function ContactForm() {
 
     if (!email || typeof email !== "string" || email.trim() === "") {
       e.preventDefault();
-      setEmailError("This field is mandatory");
+      setEmailError(t('contact.emailRequired'));
       return;
     }
 
@@ -32,7 +34,7 @@ function ContactForm() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       e.preventDefault();
-      setEmailError("Please enter a valid email address");
+      setEmailError(t('contact.emailInvalid'));
       return;
     }
 
@@ -56,11 +58,11 @@ function ContactForm() {
               htmlFor="email"
               className="block text-white/60 text-xs uppercase tracking-widest font-light"
             >
-              Email <span className="text-red-400">*</span>
+              {t('contact.email')} <span className="text-red-400">*</span>
             </label>
             <input
               id="email"
-              type="email"
+              type="text"
               name="email"
               placeholder="your@email.com"
               onChange={() => setEmailError("")}
@@ -84,7 +86,7 @@ function ContactForm() {
               htmlFor="message"
               className="block text-white/60 text-xs uppercase tracking-widest font-light"
             >
-              Message
+              {t('contact.message')}
             </label>
             <textarea
               id="message"
@@ -117,7 +119,7 @@ function ContactForm() {
               <span
                 className="relative block py-3 px-6 sm:px-8 text-center text-xs uppercase tracking-widest\n                               text-white group-hover:text-black transition-colors duration-300\n                               border border-white/20 group-hover:border-transparent\n                               font-light"
               >
-                {state.submitting ? "Sending..." : "Send Message"}
+                {state.submitting ? t('contact.sending') : t('contact.send')}
               </span>
             </button>
           </div>

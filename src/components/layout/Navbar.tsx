@@ -25,7 +25,6 @@ function Navbar() {
   const collaborators = [
     "Simone Benanchietti",
     "Gabriele Mininni",
-    "Elia Apicella",
     "Anita Cappello",
     "Michele Lomartire",
     "Daniele Corn",
@@ -33,6 +32,7 @@ function Navbar() {
     "Giulio Finocchiaro",
     "Matteo Messori",
     "James Ayres",
+    "Elia Apicella",
   ];
 
   return (
