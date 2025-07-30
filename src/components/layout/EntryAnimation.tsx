@@ -1,5 +1,4 @@
 import AnimatedLogo from "./AnimatedLogo";
-import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { motion, cubicBezier } from 'framer-motion';
 
@@ -8,7 +7,8 @@ const easeFn = cubicBezier(0.42, 0, 0.58, 1); // cubic-bezier equivalente a 'eas
 function EntryAnimation() {
   const [showText, setShowText] = useState(false);
   const [hideEntry, setHideEntry] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(false);
+
+   // Forza la visualizzazione della navbar per il test
 
   useEffect(() => {
     // Testo più veloce - inizia quasi subito dopo il logo
@@ -21,14 +21,10 @@ function EntryAnimation() {
       setHideEntry(true);
     }, 1800); // 900ms + 900ms (tempo animazione + pausa)
 
-    const navbarTimer = setTimeout(() => {
-      setShowNavbar(true);
-    }, 2100); // poco dopo la fine della compressione
-
+    // Rimuovo il timer per la navbar perché showNavbar non è usato
     return () => {
       clearTimeout(textTimer);
       clearTimeout(hideTimer);
-      clearTimeout(navbarTimer);
     };
   }, []);
 
@@ -72,7 +68,7 @@ function EntryAnimation() {
       >
         <div className="flex items-center gap-4 relative">
           <div className="relative z-10">
-            <AnimatedLogo onAnimationComplete={() => {}} />
+            <AnimatedLogo />
           </div>
           
           <motion.div

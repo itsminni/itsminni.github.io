@@ -7,7 +7,6 @@ const easeFn = cubicBezier(0.42, 0, 0.58, 1); // cubic-bezier equivalente a 'eas
 function EntryAnimation() {
   const [showText, setShowText] = useState(false);
   const [hideEntry, setHideEntry] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(false);
 
   useEffect(() => {
     // Testo più veloce - inizia quasi subito dopo il logo
@@ -20,14 +19,10 @@ function EntryAnimation() {
       setHideEntry(true);
     }, 1800); // 900ms + 900ms (tempo animazione + pausa)
 
-    const navbarTimer = setTimeout(() => {
-      setShowNavbar(true);
-    }, 2100); // poco dopo la fine della compressione
-
+    // Rimuovo il timer per la navbar perché showNavbar non è usato
     return () => {
       clearTimeout(textTimer);
       clearTimeout(hideTimer);
-      clearTimeout(navbarTimer);
     };
   }, []);
 
@@ -69,16 +64,16 @@ function EntryAnimation() {
         animate={hideEntry ? "hidden" : "visible"}
         style={{ originY: 0, position: 'absolute', width: '100%', zIndex: 50 }}
       >
-        <div className="flex items-center gap-4 relative">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 relative">
           <div className="relative z-10">
-            <AnimatedLogo onAnimationComplete={() => {}} />
+            <AnimatedLogo />
           </div>
           
           <motion.div
             variants={textVariants}
             initial="hidden"
             animate={showText ? "visible" : "hidden"}
-            className="text-white font-black text-[15vh] tracking-wider relative z-0"
+            className="text-white font-black text-[8vh] sm:text-[12vh] md:text-[15vh] tracking-wider relative z-0"
             style={{ 
               fontFamily: 'system-ui, -apple-system, sans-serif',
               transformStyle: 'preserve-3d'

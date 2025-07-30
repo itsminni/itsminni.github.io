@@ -1,9 +1,7 @@
-import React, { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 
 function ContactForm() {
   const [state, handleSubmit] = useForm("xwpqbazz");
-  const [emailError, setEmailError] = useState("");
 
   if (state.succeeded) {
     return (
@@ -18,32 +16,10 @@ function ContactForm() {
     );
   }
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
-
-    if (!email || typeof email !== "string" || email.trim() === "") {
-      e.preventDefault();
-      setEmailError("This field is mandatory");
-      return;
-    }
-
-    // Email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      e.preventDefault();
-      setEmailError("Please enter a valid email address");
-      return;
-    }
-
-    setEmailError("");
-    handleSubmit(e);
-  };
-
   return (
     <form
       className="w-full max-w-3xl"
-      onSubmit={handleFormSubmit}
+      onSubmit={handleSubmit}
     >
       <div className="relative">
         {/* Subtle glow effect */}
@@ -56,16 +32,16 @@ function ContactForm() {
               htmlFor="email"
               className="block text-white/60 text-xs uppercase tracking-widest font-light"
             >
-              Email <span className="text-red-400">*</span>
+              Email
             </label>
             <input
               id="email"
               type="email"
               name="email"
               placeholder="your@email.com"
-              onChange={() => setEmailError("")}
-              className="w-full bg-transparent text-white border-0 border-b border-white/20 pb-2 \
-                         focus:outline-none focus:border-white/50 transition-all duration-300\n                         placeholder:text-white/30 text-sm font-light"
+              className="w-full bg-transparent text-white border-0 border-b border-white/20 pb-2 
+                         focus:outline-none focus:border-white/50 transition-all duration-300
+                         placeholder:text-white/30 text-sm font-light"
             />
             <ValidationError
               prefix="Email"
@@ -73,9 +49,6 @@ function ContactForm() {
               errors={state.errors}
               className="text-red-400/80 text-xs font-light"
             />
-            {emailError && (
-              <p className="text-red-400/80 text-xs font-light">{emailError}</p>
-            )}
           </div>
 
           {/* Message Field */}
@@ -91,8 +64,9 @@ function ContactForm() {
               name="message"
               rows={4}
               placeholder="Write your message..."
-              className="w-full bg-transparent text-white border-0 border-b border-white/20 pb-2 \
-                         focus:outline-none focus:border-white/50 transition-all duration-300\n                         placeholder:text-white/30 text-sm font-light resize-none"
+              className="w-full bg-transparent text-white border-0 border-b border-white/20 pb-2 
+                         focus:outline-none focus:border-white/50 transition-all duration-300
+                         placeholder:text-white/30 text-sm font-light resize-none"
             />
             <ValidationError
               prefix="Message"
@@ -110,12 +84,15 @@ function ContactForm() {
               className="group relative w-full overflow-hidden"
             >
               <div
-                className="absolute inset-0 bg-white transform -skew-x-12 -translate-x-full \
+                className="absolute inset-0 bg-white transform -skew-x-12 -translate-x-full 
                               group-hover:translate-x-0 transition-transform duration-500"
               />
 
               <span
-                className="relative block py-3 px-6 sm:px-8 text-center text-xs uppercase tracking-widest\n                               text-white group-hover:text-black transition-colors duration-300\n                               border border-white/20 group-hover:border-transparent\n                               font-light"
+                className="relative block py-3 px-6 sm:px-8 text-center text-xs uppercase tracking-widest
+                               text-white group-hover:text-black transition-colors duration-300
+                               border border-white/20 group-hover:border-transparent
+                               font-light"
               >
                 {state.submitting ? "Sending..." : "Send Message"}
               </span>
