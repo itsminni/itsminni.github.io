@@ -130,7 +130,7 @@ function Navbar() {
       </nav>
 
       {/* Mobile Navbar */}
-      <nav className="fixed top-0 left-0 w-full flex items-center justify-between px-4 py-5 bg-black/90 backdrop-blur-sm border-b border-zinc-800 z-50 md:hidden">
+      <nav className="fixed top-0 left-0 w-full flex items-center px-4 justify-between py-5 bg-black/90 backdrop-blur-sm border-b border-zinc-800 z-50 md:hidden">
         <div className="flex items-center gap-3">
           <span className="w-8 h-8 flex items-center relative">
             <svg
@@ -218,6 +218,8 @@ function Navbar() {
               </a>
             </li>
           </ul>
+
+          <span className="block w-[80%] h-[1px] bg-zinc-100/60 transition-all duration-300"></span>
 
           {/* Team dropdown for mobile */}
           <div className="text-center">

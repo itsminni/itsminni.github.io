@@ -8,8 +8,6 @@ function EntryAnimation() {
   const [showText, setShowText] = useState(false);
   const [hideEntry, setHideEntry] = useState(false);
 
-   // Forza la visualizzazione della navbar per il test
-
   useEffect(() => {
     // Testo più veloce - inizia quasi subito dopo il logo
     const textTimer = setTimeout(() => {
@@ -60,14 +58,14 @@ function EntryAnimation() {
   return (
     <>
       <motion.div
-        className="h-screen w-full flex items-center justify-center bg-black overflow-hidden"
+        className="h-screen w-full flex items-center justify-center bg-black overflow-hidden px-4"
         variants={containerVariants}
         initial="visible"
         animate={hideEntry ? "hidden" : "visible"}
         style={{ originY: 0, position: 'absolute', width: '100%', zIndex: 50 }}
       >
-        <div className="flex items-center gap-4 relative">
-          <div className="relative z-10">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 relative max-w-full">
+          <div className="relative z-10 flex-shrink-0">
             <AnimatedLogo />
           </div>
           
@@ -75,10 +73,12 @@ function EntryAnimation() {
             variants={textVariants}
             initial="hidden"
             animate={showText ? "visible" : "hidden"}
-            className="text-white font-black text-[15vh] tracking-wider relative z-0"
+            className="text-white font-black text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-wider relative z-0 text-center sm:text-left"
             style={{ 
               fontFamily: 'system-ui, -apple-system, sans-serif',
-              transformStyle: 'preserve-3d'
+              transformStyle: 'preserve-3d',
+              fontSize: 'clamp(2rem, 8vw, 12rem)',
+              lineHeight: '0.9'
             }}
           >
             ALLINX
