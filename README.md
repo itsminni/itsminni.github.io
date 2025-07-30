@@ -94,4 +94,3 @@ We welcome contributions! Please follow these steps:
 ## Contact
 
 For questions, please email us at info@vallinx.eu
-```
