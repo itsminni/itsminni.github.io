@@ -16,31 +16,12 @@ function Contact() {
             </p>
           </div>
 
-          <ul className="border border-white/10 p-8 rounded-lg mt-8">
-            <li className="text-white/60 mt-4">
-              <span className="font-light">Email: </span>
-              <a
-                href="mailto:info@yourdomain.com"
-                className="text-white/60 hover:text-white transition-colors duration-300"
-              >
-                info@yourdomain.com
-              </a>
-            </li>
-            <li className="text-white/60 mt-2">
-              <span className="font-light">Address:</span> Via Sommarive, 18,
-              38123 Trento TN, Italy
-            </li>
-            <li className="text-white/60 mt-2">
-              <span className="font-light">Follow us:</span>
-              <a className="cursor-pointer text-white/60 hover:line-through hover:text-white transition-colors duration-300 ml-2">
-                Twitter
-              </a>
-              <span className="mx-2">|</span>
-              <a className="cursor-pointer text-white/60 hover:line-through hover:text-white transition-colors duration-300">
-                LinkedIn
-              </a>
-            </li>
-          </ul>
+          <div className="border border-white/10 p-8 rounded-lg mt-8">
+            <p className="text-white/40 text-xs leading-relaxed max-w-sm">
+              By sending this message, you consent to the processing of the personal data provided 
+              (email address and message) exclusively to receive a response to your request.
+            </p>
+          </div>
         </div>
         <ContactForm />
       </div>
