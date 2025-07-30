@@ -1,69 +1,97 @@
-# React + TypeScript + Vite
+# Vallinx Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+- **Internationalization**: Automatic language detection (Italian/English) based on browser settings
+- **Modern UI**: Clean and minimalist design
+- **Project Showcase**: Interactive grid displaying our research projects
+- **Contact Form**: Integrated contact system with form validation
+- **Team Display**: Scrolling ticker with team member names
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 18** with TypeScript
+- **Vite** for fast development and building
+- **Tailwind CSS** for styling
+- **Framer Motion** for animations
+- **React i18next** for internationalization
+- **Formspree** for contact form handling
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Development
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Node.js (version 18 or higher)
+- npm or yarn
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/vallinx/Website.git
+cd Website
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
+```bash
+npm install
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. Start the development server:
+```bash
+npm run dev
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The website will be available at `http://localhost:5173`
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Project Structure
+
+```
+├── public/              # Static assets (videos, images, favicon)
+├── src/
+│   ├── components/
+│   │   ├── layout/      # Navigation and layout components
+│   │   ├── sections/    # Page sections (About, Projects, Contact)
+│   │   ├── ContactForm.tsx # Contact form component
+│   │   └── EntryAnimation.tsx # Animation component
+│   ├── assets/          # React assets
+│   ├── i18n.ts         # Internationalization configuration
+│   ├── main.tsx        # Application entry point
+│   ├── App.tsx         # Main App component
+│   ├── index.css       # Global styles
+│   └── vite-env.d.ts   # Vite type definitions
+├── index.html          # HTML entry point
+├── vite.config.ts      # Vite configuration
+├── tsconfig*.json      # TypeScript configurations
+├── eslint.config.js    # ESLint configuration
+├── package.json        # Dependencies and scripts
+├── package-lock.json   # Dependency lock file
+└── README.md           # Project documentation
+```
+
+## Languages
+
+The website automatically detects the user's browser language and displays content in:
+- **Italian** (default for Italian browsers)
+- **English** (default for all other languages)
+
+## Contributing
+
+We welcome contributions! Please follow these steps:
+1. Fork the repository
+2. Create a new branch for your feature or bug fix
+3. Make your changes and commit them
+4. Push to your forked repository
+5. Create a pull request 
+
+## Contact
+
+For questions, please email us at info@vallinx.eu
 ```
