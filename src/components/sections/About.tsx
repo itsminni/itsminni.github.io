@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const newsData = [
   'Simone Benanchietti',
@@ -15,6 +16,8 @@ const newsData = [
 
 export default function About() {
   const tickerRef = useRef<HTMLDivElement>(null);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const ticker = tickerRef.current;
@@ -42,7 +45,7 @@ export default function About() {
 
   return (
     <div className="about-container">
-      <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl mb-4 font-bold">WHO ARE WE</h1>
+      <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase mb-4 font-bold">{t('aboutus.title')}</h1>
       <div className="relative w-full max-w-3xl overflow-x-hidden mt-4 sm:mt-6 md:mt-8">
         <div
           ref={tickerRef}

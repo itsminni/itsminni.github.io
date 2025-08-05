@@ -1,27 +1,55 @@
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
+import { useState, useRef, useEffect } from 'react';
 
 function Projects() {
   const { t } = useTranslation();
-                        <span className="text-sm font-light tracking-wide">{t('projects.github')}</span> 
+  const [loadedVideos, setLoadedVideos] = useState<Set<number>>(new Set());
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Hook per il lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            setLoadedVideos(prev => new Set(prev).add(index));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    videoRefs.current.forEach((ref, index) => {
+      if (ref) {
+        ref.setAttribute('data-index', index.toString());
+        observer.observe(ref);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const projects: Project[] = [
     {
       title: t('projects.giano.title'),
       description: t('projects.giano.description'),
-      video: "/project1.mp4",
+      video: "/projects/project1.webm",
       size: "large", // occupa 2 colonne
     },
     {
       title: t('projects.website.title'),
       description: t('projects.website.description'),
-      video: "/project2.mp4",
+      video: "/projects/project2.webm",
       size: "medium", // occupa 1 colonna, altezza doppia
     },
     {
-      title: t('projects.comingSoon'),
-      description: "",
+      title: t('projects.augure.title'),
+      description: t('projects.augure.description'),
+      video: "/projects/project3.webm",
       size: "small", // dimensione standard
-      comingSoon: true,
     },
     {
       title: t('projects.comingSoon'),
@@ -40,7 +68,7 @@ interface Project {
     comingSoon?: boolean;
 }
 
-const getSizeClasses = (size) => {
+const getSizeClasses = (size: string) => {
     switch(size) {
         case 'large':
             return 'col-span-2 row-span-1';
@@ -85,11 +113,16 @@ return (
                             )}
                             {project.video && (
                                 <video
-                                    src={project.video}
+                                    ref={(el) => {
+                                        videoRefs.current[index] = el;
+                                    }}
+                                    src={loadedVideos.has(index) ? project.video : undefined}
                                     className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                                    autoPlay
+                                    autoPlay={loadedVideos.has(index)}
                                     loop
                                     muted
+                                    playsInline
+                                    preload="none"
                                 />
                             )}
                             

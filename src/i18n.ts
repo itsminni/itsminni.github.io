@@ -16,7 +16,9 @@ const resources = {
         success: "Message sent successfully. We'll be in touch.",
         emailRequired: "This field is mandatory",
         emailInvalid: "Please enter a valid email address",
-        privacy: "By sending this message, you consent to the processing of the personal data provided (email address and message) exclusively to receive a response to your request."
+        privacy: "By sending this message, you consent to the processing of the personal data provided (email address and message) exclusively to receive a response to your request.",
+        getintouch: "Get in Touch",
+        followus: "Follow Us",
       },
       projects: {
         title: "Selected Works",
@@ -27,6 +29,10 @@ const resources = {
         website: {
           title: "WEBSITE",
           description: "Design and development of group website"
+        },
+        augure: {
+          title: "AUGURE",
+          description: "Deep learning model for sub-seasonal forecasting meteorological time series"
         },
         comingSoon: "Coming soon",
         github: "View more on GitHub"
@@ -45,7 +51,12 @@ const resources = {
         success: "Messaggio inviato con successo. Ti contatteremo presto.",
         emailRequired: "Questo campo è obbligatorio",
         emailInvalid: "Inserisci un indirizzo email valido",
-        privacy: "Mandando questo messaggio, acconsenti al trattamento dei dati personali forniti (indirizzo email e messaggio) esclusivamente per ricevere una risposta alla tua richiesta."
+        privacy: "Mandando questo messaggio, acconsenti al trattamento dei dati personali forniti (indirizzo email e messaggio) esclusivamente per ricevere una risposta alla tua richiesta.",
+        getintouch: "Contattaci",
+        followus: "Seguici",
+      },
+      aboutus: {
+        title: "Chi Siamo",
       },
       projects: {
         title: "Lavori Selezionati",
@@ -56,6 +67,10 @@ const resources = {
         website: {
           title: "SITO WEB",
           description: "Progettazione e sviluppo del sito web del gruppo"
+        },
+        augure: {
+          title: "AUGURE",
+          description: "Modello di deep learning per la previsione meteorologica a medio termine"
         },
         comingSoon: "Prossimamente",
         github: "Vedi di più su GitHub"
