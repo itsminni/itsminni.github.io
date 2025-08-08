@@ -1,24 +1,27 @@
-import { useState, useEffect } from 'react'
-import { Typewriter } from 'react-simple-typewriter'
+import { useState, useEffect } from 'react';
+import { Typewriter } from 'react-simple-typewriter';
 
-function Hero() {
-  const [showTypewriter, setShowTypewriter] = useState(false)
+interface HeroProps {
+  typewriterDelay?: number; // milliseconds
+}
+
+function Hero({ typewriterDelay = 2000 }: HeroProps) {
+  const [showTypewriter, setShowTypewriter] = useState(typewriterDelay === 0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowTypewriter(true)
-    }, 2000) // ⏱️ Delay di 2 secondi
-    return () => clearTimeout(timer)
-  }, [])
+    if (typewriterDelay === 0) return; // already showing
+    const timer = setTimeout(() => setShowTypewriter(true), typewriterDelay);
+    return () => clearTimeout(timer);
+  }, [typewriterDelay]);
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center bg-black overflow-hidden">
+  <div className="relative w-full min-h-[100dvh] flex items-center justify-center bg-black overflow-hidden px-4 sm:px-6 md:px-8 py-[calc(env(safe-area-inset-top)+1rem)]">
       
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-8 max-w-4xl mx-auto">
-        <h1 className="text-zinc-100 text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-none">
-          <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-[0.3em] sm:tracking-[0.5em] mb-2 text-zinc-500">
+  <h1 className="text-zinc-100 font-black uppercase tracking-tighter leading-none text-[clamp(2.5rem,8vw,6.75rem)]">
+          <span className="block font-light tracking-[0.35em] sm:tracking-[0.45em] mb-3 text-zinc-500 text-[clamp(0.6rem,2.2vw,1.6rem)]">
             WELCOME TO
           </span>
           <span className="inline-block overflow-hidden">
@@ -38,9 +41,9 @@ function Hero() {
         </h1>
 
         {/* Subtitle */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4 mt-4 sm:mt-6">
+  <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-6 sm:mt-8">
           <div className="h-px w-10 sm:w-20 bg-zinc-700"></div>
-          <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-mono lowercase tracking-wider">
+          <p className="text-zinc-400 text-[clamp(0.65rem,2vw,0.95rem)] font-mono lowercase tracking-wider">
             connectivity × innovation
           </p>
           <div className="h-px w-10 sm:w-20 bg-zinc-700"></div>

@@ -69,18 +69,20 @@ interface Project {
 }
 
 const getSizeClasses = (size: string) => {
-    switch(size) {
+    // Su mobile (grid-cols-1) tutti col-span-1 per evitare overflow.
+    // Dal breakpoint md in poi applichiamo il layout "bento" originale.
+    switch (size) {
         case 'large':
-            return 'col-span-2 row-span-1';
+            return 'col-span-1 md:col-span-2 md:row-span-1';
         case 'medium':
-            return 'col-span-1 row-span-2';
+            return 'col-span-1 md:col-span-1 md:row-span-2';
         default:
-            return 'col-span-1 row-span-1';
+            return 'col-span-1 md:col-span-1 md:row-span-1';
     }
 };
 
 return (
-    <div className="min-h-screen bg-black px-8 py-16">
+    <div className="min-h-screen bg-black px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div className="max-w-7xl mx-auto">
             {/* Header minimale */}
             <motion.h2 
@@ -93,14 +95,14 @@ return (
             </motion.h2>
 
             {/* Bento Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[300px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 auto-rows-[210px] sm:auto-rows-[240px] md:auto-rows-[300px] overflow-hidden">
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className={`${getSizeClasses(project.size)} group relative overflow-hidden cursor-pointer`}
+                        className={`${getSizeClasses(project.size)} group relative overflow-hidden cursor-pointer rounded-lg w-full`}
                     >
                         {/* Immagine con overlay */}
                         <div className="absolute inset-0 bg-zinc-900">
@@ -132,16 +134,16 @@ return (
 
                         {/* Contenuto con parallax effect */}
                         <motion.div 
-                            className="absolute inset-0 p-8 flex flex-col justify-end"
+                            className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end"
                             initial={{ y: 0 }}
                             whileHover={{ y: -10 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <h3 className="text-white text-2xl font-light mb-2 transform group-hover:translate-y-0 translate-y-2 transition-transform duration-300">
+                            <h3 className="text-white text-xl sm:text-2xl font-light mb-2 transform group-hover:translate-y-0 translate-y-2 transition-transform duration-300">
                                 {project.title}
                             </h3>
                             {project.description && (
-                                <p className="text-gray-400 text-sm font-light opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                                <p className="text-gray-400 text-xs sm:text-sm font-light opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-75">
                                     {project.description}
                                 </p>
                             )}

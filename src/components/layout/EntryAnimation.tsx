@@ -1,30 +1,45 @@
 import AnimatedLogo from "./AnimatedLogo";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, cubicBezier } from 'framer-motion';
 
 const easeFn = cubicBezier(0.42, 0, 0.58, 1); // cubic-bezier equivalente a 'easeInOut'
 
-function EntryAnimation() {
+interface EntryAnimationProps {
+  onFinish?: () => void; // callback fired when the entry animation is fully done
+}
+
+function EntryAnimation({ onFinish }: EntryAnimationProps) {
   const [showText, setShowText] = useState(false);
   const [hideEntry, setHideEntry] = useState(false);
+  const finishedRef = useRef(false);
 
   useEffect(() => {
-    // Testo più veloce - inizia quasi subito dopo il logo
-    const textTimer = setTimeout(() => {
-      setShowText(true);
-    }, 900);
+    // lock scroll
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
 
-    // Dopo l'animazione del testo, comprimi verso l'alto e nascondi
-    const hideTimer = setTimeout(() => {
-      setHideEntry(true);
-    }, 1800); // 900ms + 900ms (tempo animazione + pausa)
+    // show text shortly after start
+    const textTimer = setTimeout(() => setShowText(true), 900);
+    // trigger collapse
+    const hideTimer = setTimeout(() => setHideEntry(true), 1800);
+    // finish (allow some extra time for collapse animation ~100ms)
+    const finishTimer = setTimeout(() => {
+      if (!finishedRef.current) {
+        finishedRef.current = true;
+        document.body.style.overflow = previousOverflow; // restore scroll
+        onFinish?.();
+      }
+    }, 1950); // 1800 + 150ms buffer
 
-    // Rimuovo il timer per la navbar perché showNavbar non è usato
     return () => {
       clearTimeout(textTimer);
       clearTimeout(hideTimer);
+      clearTimeout(finishTimer);
+      if (!finishedRef.current) {
+        document.body.style.overflow = previousOverflow; // ensure restore on unmount
+      }
     };
-  }, []);
+  }, [onFinish]);
 
   const textVariants = {
     hidden: {
@@ -58,11 +73,11 @@ function EntryAnimation() {
   return (
     <>
       <motion.div
-        className="h-screen w-full flex items-center justify-center bg-black overflow-hidden px-4"
+        className="fixed inset-0 h-screen w-screen flex items-center justify-center bg-black overflow-hidden px-4"
         variants={containerVariants}
         initial="visible"
         animate={hideEntry ? "hidden" : "visible"}
-        style={{ originY: 0, position: 'absolute', width: '100%', zIndex: 50 }}
+        style={{ originY: 0, zIndex: 50 }}
       >
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 relative max-w-full">
           <div className="relative z-10 flex-shrink-0">

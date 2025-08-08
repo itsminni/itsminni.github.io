@@ -1,10 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [showTeamDesktop, setShowTeamDesktop] = useState(false);
+  const [showTeamSidebar, setShowTeamSidebar] = useState(false);
+  const desktopTeamRef = useRef<HTMLLIElement | null>(null);
+  const sidebarTeamRef = useRef<HTMLLIElement | null>(null);
+  const desktopCloseTimer = useRef<number | null>(null);
+  const sidebarCloseTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,11 +41,25 @@ function Navbar() {
     "Elia Apicella",
   ];
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (desktopTeamRef.current && !desktopTeamRef.current.contains(e.target as Node)) {
+        setShowTeamDesktop(false);
+      }
+      if (sidebarTeamRef.current && !sidebarTeamRef.current.contains(e.target as Node)) {
+        setShowTeamSidebar(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <>
       {/* Horizontal Navbar - Hidden on mobile */}
       <nav
-        className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 py-5 bg-black/90 backdrop-blur-sm border-b border-zinc-800 z-50 transition-all duration-500 hidden md:flex ${isScrolled
+  className={`fixed top-0 left-0 w-full hidden md:flex items-center justify-between px-4 md:px-10 py-5 bg-black/90 backdrop-blur-sm border-b border-zinc-800 z-50 transition-all duration-500 ${isScrolled
           ? "translate-y-[-100%] opacity-0"
           : "translate-y-0 opacity-100"
           }`}
@@ -64,7 +84,7 @@ function Navbar() {
           </span>
         </div>
 
-        <ul className="flex gap-6 lg:gap-10 items-center">
+  <ul className="flex gap-6 lg:gap-10 items-center select-none">
           <li>
             <a
               href="#hero"
@@ -81,35 +101,7 @@ function Navbar() {
               About
             </a>
           </li>
-          <li className="relative group">
-            <button className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200 text-sm font-medium tracking-wide uppercase flex items-center gap-2">
-              Team
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-            <div className="absolute left-0 top-full mt-2 bg-zinc-900 border border-zinc-800 rounded shadow-lg py-2 w-48 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 z-50">
-              {collaborators.map((name, idx) => (
-                <a
-                  key={idx}
-                  href={"/" + name.replace(/\s+/g, "")}
-                  className="block px-4 py-2 text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800 text-sm transition-colors duration-150"
-                >
-                  {name}
-                </a>
-              ))}
-            </div>
-          </li>
+          
           <li>
             <a
               href="#contact"
@@ -125,6 +117,64 @@ function Navbar() {
             >
               Projects
             </a>
+          </li>
+          <li 
+            ref={desktopTeamRef}
+            className="relative"
+            onMouseEnter={() => {
+              if (desktopCloseTimer.current) {
+                clearTimeout(desktopCloseTimer.current);
+                desktopCloseTimer.current = null;
+              }
+              setShowTeamDesktop(true);
+            }}
+            onMouseLeave={() => {
+              if (desktopCloseTimer.current) clearTimeout(desktopCloseTimer.current);
+              desktopCloseTimer.current = window.setTimeout(() => setShowTeamDesktop(false), 180);
+            }}
+          >
+            <button
+              aria-haspopup="true"
+              aria-expanded={showTeamDesktop}
+              onClick={() => setShowTeamDesktop(s => !s)}
+              className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200 text-sm font-medium tracking-wide uppercase flex items-center gap-2 focus:outline-none"
+            >
+              Team
+              <svg
+                className={`w-3 h-3 transition-transform duration-200 ${showTeamDesktop ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {showTeamDesktop && (
+              <div 
+                className="absolute right-0 top-full mt-4 bg-zinc-900 border border-zinc-800 rounded shadow-lg py-2 w-48 z-50 animate-fadeIn"
+                onMouseEnter={() => {
+                  if (desktopCloseTimer.current) {
+                    clearTimeout(desktopCloseTimer.current);
+                    desktopCloseTimer.current = null;
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (desktopCloseTimer.current) clearTimeout(desktopCloseTimer.current);
+                  desktopCloseTimer.current = window.setTimeout(() => setShowTeamDesktop(false), 180);
+                }}
+              >
+                {collaborators.map((name, idx) => (
+                  <a
+                    key={idx}
+                    href={"/" + name.replace(/\s+/g, "")}
+                    className="block px-4 py-2 text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800 text-sm transition-colors duration-150"
+                    onClick={() => setShowTeamDesktop(false)}
+                  >
+                    {name}
+                  </a>
+                ))}
+              </div>
+            )}
           </li>
         </ul>
       </nav>
@@ -382,32 +432,60 @@ function Navbar() {
                 Projects
               </div>
             </li>
-            <li className="group/item relative mt-auto">
-              <button className="flex items-center justify-center w-12 h-12 text-zinc-400 hover:text-zinc-100 transition-all duration-200">
+            <li 
+              ref={sidebarTeamRef}
+              className="relative mt-auto"
+              onMouseEnter={() => {
+                if (sidebarCloseTimer.current) {
+                  clearTimeout(sidebarCloseTimer.current);
+                  sidebarCloseTimer.current = null;
+                }
+                setShowTeamSidebar(true);
+              }}
+              onMouseLeave={() => {
+                if (sidebarCloseTimer.current) clearTimeout(sidebarCloseTimer.current);
+                sidebarCloseTimer.current = window.setTimeout(() => setShowTeamSidebar(false), 180);
+              }}
+            >
+              <button
+                aria-haspopup="true"
+                aria-expanded={showTeamSidebar}
+                onClick={() => setShowTeamSidebar(s => !s)}
+                className="flex items-center justify-center w-12 h-12 text-zinc-400 hover:text-zinc-100 transition-all duration-200 focus:outline-none"
+              >
                 <span
                   className="text-xs font-bold tracking-wider uppercase"
-                  style={{
-                    writingMode: "vertical-rl",
-                    transform: "rotate(180deg)",
-                  }}
+                  style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
                 >
                   Team
                 </span>
               </button>
-              <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-1 bg-zinc-900 text-zinc-100 text-xs rounded opacity-0 group-hover/item:opacity-100 pointer-events-none transition-opacity duration-200 whitespace-nowrap">
-                Team
-              </div>
-              <div className="absolute left-full ml-2 bottom-0 bg-zinc-900 border border-zinc-800 rounded shadow-lg py-2 w-56 opacity-0 group-hover/item:opacity-100 transition-opacity duration-200 z-50 pointer-events-auto">
-                {collaborators.map((name, idx) => (
-                  <a
-                    key={idx}
-                    href={"/" + name.replace(/\s+/g, "")}
-                    className="block px-4 py-2 text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800 text-xs transition-colors duration-150"
-                  >
-                    {name}
-                  </a>
-                ))}
-              </div>
+              {showTeamSidebar && (
+                <div 
+                  className="absolute left-full ml-2 bottom-0 bg-zinc-900 border border-zinc-800 rounded shadow-lg py-2 w-56 z-50 animate-fadeIn"
+                  onMouseEnter={() => {
+                    if (sidebarCloseTimer.current) {
+                      clearTimeout(sidebarCloseTimer.current);
+                      sidebarCloseTimer.current = null;
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (sidebarCloseTimer.current) clearTimeout(sidebarCloseTimer.current);
+                    sidebarCloseTimer.current = window.setTimeout(() => setShowTeamSidebar(false), 180);
+                  }}
+                >
+                  {collaborators.map((name, idx) => (
+                    <a
+                      key={idx}
+                      href={"/" + name.replace(/\s+/g, "")}
+                      className="block px-4 py-2 text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800 text-xs transition-colors duration-150"
+                      onClick={() => setShowTeamSidebar(false)}
+                    >
+                      {name}
+                    </a>
+                  ))}
+                </div>
+              )}
             </li>
           </ul>
         </div>
