@@ -1,96 +1,76 @@
-# Vallinx Website
+# Minni — Portfolio
 
-## Features
+Questo repository contiene il sito personale di Gabriele (nickname Minni), un portfolio statico costruito con Vite e React.
 
-- **Internationalization**: Automatic language detection (Italian/English) based on browser settings
-- **Modern UI**: Clean and minimalist design
-- **Project Showcase**: Interactive grid displaying our research projects
-- **Contact Form**: Integrated contact system with form validation
-- **Team Display**: Scrolling ticker with team member names
+## Caratteristiche principali
 
-## Tech Stack
+- **Multilingua**: supporto Italiano/Inglese con rilevamento della lingua del browser
+- **Portfolio progetti**: galleria interattiva con pagine di dettaglio per ogni progetto
+- **Design moderno**: layout minimale e responsive
+- **Animazioni**: microinterazioni realizzate con Framer Motion
 
-- **React 18** with TypeScript
-- **Vite** for fast development and building
-- **Tailwind CSS** for styling
-- **Framer Motion** for animations
-- **React i18next** for internationalization
-- **Formspree** for contact form handling
+## Tecnologie
 
-## Development
+- React con TypeScript
+- Vite per sviluppo e build
+- Tailwind CSS per lo stile
+- Framer Motion per animazioni
+- react-i18next per internazionalizzazione
 
-### Prerequisites
+## Sviluppo
 
-- Node.js (version 18 or higher)
-- npm or yarn
+### Prerequisiti
 
-### Installation
+- Node.js (versione 18+ consigliata)
+- npm o yarn
 
-1. Clone the repository:
+### Installazione
+
+1. Clona il repository o forkalo sul tuo account:
 ```bash
-git clone https://github.com/vallinx/Website.git
-cd Website
+git clone https://github.com/itsminni/website.git
+cd website
 ```
 
-2. Install dependencies:
+2. Installa le dipendenze:
 ```bash
 npm install
 ```
 
-3. Start the development server:
+3. Avvia il server di sviluppo:
 ```bash
 npm run dev
 ```
 
-The website will be available at `http://localhost:5173`
+Il sito sarà disponibile su `http://localhost:5173` (porta predefinita Vite).
 
-### Available Scripts
+### Script utili
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+- `npm run dev` — Avvia il server di sviluppo
+- `npm run build` — Costruisce la versione di produzione
+- `npm run preview` — Serve la build di produzione per un'anteprima
+- `npm run lint` — Esegue ESLint
 
-## Project Structure
+## Struttura del progetto (sintesi)
+
+La codebase segue una struttura tipica React + Vite:
 
 ```
-├── public/              # Static assets (videos, images, favicon)
-├── src/
-│   ├── components/
-│   │   ├── layout/      # Navigation and layout components
-│   │   ├── sections/    # Page sections (About, Projects, Contact)
-│   │   ├── ContactForm.tsx # Contact form component
-│   │   └── EntryAnimation.tsx # Animation component
-│   ├── assets/          # React assets
-│   ├── i18n.ts         # Internationalization configuration
-│   ├── main.tsx        # Application entry point
-│   ├── App.tsx         # Main App component
-│   ├── index.css       # Global styles
-│   └── vite-env.d.ts   # Vite type definitions
-├── index.html          # HTML entry point
-├── vite.config.ts      # Vite configuration
-├── tsconfig*.json      # TypeScript configurations
-├── eslint.config.js    # ESLint configuration
-├── package.json        # Dependencies and scripts
-├── package-lock.json   # Dependency lock file
-└── README.md           # Project documentation
+public/        # asset statici
+src/           # sorgenti React
+	components/   # componenti UI e sezioni
+	i18n.ts       # configurazione internazionalizzazione
+	App.tsx       # entry routes
+index.html      # template HTML
+package.json    # script e dipendenze
 ```
 
-## Languages
+## Contribuire
 
-The website automatically detects the user's browser language and displays content in:
-- **Italian** (default for Italian browsers)
-- **English** (default for all other languages)
+Contribuzioni benvenute: apri una pull request o apri un issue se trovi un problema.
 
-## Contributing
+## Contatti
 
-We welcome contributions! Please follow these steps:
-1. Fork the repository
-2. Create a new branch for your feature or bug fix
-3. Make your changes and commit them
-4. Push to your forked repository
-5. Create a pull request 
+Preferisco essere contattato via GitHub: https://github.com/itsminni
 
-## Contact
-
-For questions, please email us at info@vallinx.eu
+Se desideri includere un indirizzo email pubblico, aggiungilo qui.
