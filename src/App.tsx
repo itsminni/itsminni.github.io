@@ -3,7 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Hero from "./components/layout/Hero";
 import About from "./components/sections/About";
 import Projects from "./components/sections/Projects";
-import Contact from "./components/sections/Contact";
+import ProjectDetail from "./components/sections/ProjectDetail";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
@@ -13,7 +13,6 @@ function App() {
     return sessionStorage.getItem('entryPlayed') === '1';
   });
 
-  // Safeguard for hydration (in case of SSR or future SSR adoption)
   useEffect(() => {
     if (sessionStorage.getItem('entryPlayed') === '1' && !entryDone) {
       setEntryDone(true);
@@ -39,13 +38,12 @@ function App() {
                   <section id="hero"><Hero typewriterDelay={entryDone ? 0 : 2000} /></section>
                   <section id="about"><About /></section>
                   <section id="projects"><Projects /></section>
-                  <section id="contact"><Contact /></section>
                 </>
               )}
             </div>
           }
         />
-        <Route path="/project/:id" element={<></>} />
+        <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
     </BrowserRouter>
   );

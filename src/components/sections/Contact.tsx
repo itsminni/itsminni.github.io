@@ -25,9 +25,9 @@ function Contact() {
                 <div className=" border border-white/15 p-5 sm:p-6 md:p-8 backdrop-blur-sm hover:bg-white/5 transition-all duration-300 rounded-lg">
                   <h3 className="text-white text-lg sm:text-xl md:text-2xl font-semibold mb-4">{t('contact.getintouch')}</h3>
                   <div className="space-y-4">
-                    <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
-                      <span className="text-white/80">info@vallinx.eu</span>
+                      <a href="https://github.com/itsminni" target="_blank" rel="noopener noreferrer" className="text-white/80 underline">GitHub: @itsminni</a>
                     </div>
                   </div>
                 </div>
@@ -45,7 +45,7 @@ function Contact() {
                         }
                       >
                         {social === 'GitHub' ? (
-                          <a href="https://github.com/vallinx" target="_blank" rel="noopener noreferrer">
+                          <a href="https://github.com/itsminni" target="_blank" rel="noopener noreferrer">
                             {social}
                           </a>
                         ) : (
