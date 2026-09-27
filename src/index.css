@@ -361,22 +361,6 @@ h2 {
   z-index: 1;
   font-weight: 500;
 }
-.giano-wordmark > span {
-  font-size: 39px;
-  color: #c5d4b8;
-  vertical-align: top;
-  margin-left: 15px;
-  display: inline-block;
-  padding-top: 12px;
-}
-.visual-bottom {
-  position: absolute;
-  left: 28px;
-  bottom: 24px;
-  font-size: 11px;
-  z-index: 1;
-  color: #d2d7cb;
-}
 .visual-fyre {
   background: #19131d;
 }
@@ -956,18 +940,9 @@ h2 {
     top: auto;
     bottom: 20px;
   }
-  .visual-bottom {
-    left: 18px;
-    font-size: 9px;
-    bottom: 20px;
-  }
   .giano-wordmark {
     font-size: 54px;
     letter-spacing: -3px;
-  }
-  .giano-wordmark > span {
-    font-size: 28px;
-    margin-left: 9px;
   }
   .project-meta {
     font-size: 8px;
@@ -1132,10 +1107,6 @@ h2 {
   }
   .giano-wordmark {
     font-size: 72px;
-  }
-  .visual-bottom {
-    left: 23px;
-    font-size: 10px;
   }
   .project-info {
     padding-top: 19px;

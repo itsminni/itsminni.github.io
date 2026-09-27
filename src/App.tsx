@@ -34,15 +34,7 @@ function ProjectVisual({ id, language }: { id: string; language: Language }) {
             height="675"
             loading="lazy"
           />
-          <span className="visual-caption">GIANO / WEATHER DATA RESEARCH</span>
-          <span className="giano-wordmark">
-            Giano<span>↗</span>
-          </span>
-          <span className="visual-bottom">
-            {language === "it"
-              ? "Ricostruzione di dati meteorologici"
-              : "Weather data reconstruction"}
-          </span>
+          <span className="giano-wordmark">Giano</span>
         </>
       )}
       {id === "fyre" && (
@@ -64,7 +56,6 @@ function ProjectVisual({ id, language }: { id: string; language: Language }) {
           <span className="art-letter">
             A<span>h</span>
           </span>
-          <span className="visual-caption bottom-caption">ARTHINT / 2027</span>
         </>
       )}
       {id === "telegram-bot" && (
