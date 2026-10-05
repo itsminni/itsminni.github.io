@@ -16,9 +16,19 @@ function getAdditionalLinks(value: unknown): ExternalLink[] {
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return (
-    <span className="arrow" aria-hidden="true">
-      {diagonal ? "↗" : "→"}
-    </span>
+    <svg
+      className="arrow"
+      aria-hidden="true"
+      focusable="false"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d={diagonal ? "M5 19 19 5M5 5h14v14" : "M3 12h18m-7-7 7 7-7 7"} />
+    </svg>
   );
 }
 
