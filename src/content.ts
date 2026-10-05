@@ -131,7 +131,7 @@ export const content: Record<Language, Content> = {
         title: "WebValley & Giano",
         place: "Fondazione Bruno Kessler",
         description:
-          "Tra i 12 partecipanti selezionati a livello nazionale per WebValley 2025, ho lavorato alla ricerca sui dati meteorologici con il team Giano. Il percorso comprendeva anche workshop su UX design, lavoro di squadra e public speaking, applicati allo sviluppo e alla presentazione finale.",
+          "Tra i 12 partecipanti selezionati a livello nazionale per WebValley 2025, ho lavorato alla ricerca sui dati meteorologici con il team Giano. Il percorso comprendeva anche workshop su UX design, lavoro di squadra e public speaking.",
         link: {
           label: "Sito ufficiale WebValley",
           href: "https://webvalley.fbk.eu",
@@ -161,21 +161,21 @@ export const content: Record<Language, Content> = {
       {
         title: "Confrontare i risultati",
         description:
-          "In Giano ho confrontato il modello con BiLSTM e interpolazione, ripetendo le prove su variabili meteorologiche e tipi di lacune diversi. Mi serve a capire dove una modifica migliora il risultato e dove invece non porta vantaggi.",
+          "In Giano ho confrontato il modello con BiLSTM e interpolazione, ripetendo le prove su variabili meteorologiche e tipi di lacune diversi. Mi serve a capire dove una modifica migliora il risultato.",
       },
       {
         title: "Lavorare sullo stesso codice",
         description:
-          "Fyre ha client iOS, Android e web che devono comunicare con lo stesso backend. Ho lavorato alle regole comuni per lo scambio dei dati, ai test automatici e ai controlli sulle modifiche, oltre che al client iOS.",
+          "Fyre ha client iOS, Android e web che devono comunicare con lo stesso backend. Ho lavorato alle regole comuni per lo scambio dei dati, ai test automatici e ai controlli sulle modifiche.",
       },
       {
         title: "Rendere il lavoro consultabile",
         description:
-          "Per Giano ho sviluppato anche il sito che permette di esplorare le stazioni e confrontare i dati osservati con quelli ricostruiti. È un modo per mostrare cosa fa il modello, insieme al codice e alle prove su cui si basano i risultati.",
+          "Per Giano ho sviluppato anche il sito che permette di esplorare le stazioni e confrontare i dati osservati con quelli ricostruiti. È un modo per mostrare cosa fa il modello, insieme al codice e agli esperimenti dietro il progetto.",
       },
     ],
     activitiesLabel: "04 / ALTRE ATTIVITÀ",
-    activitiesTitle: "Altre attivit\u00e0",
+    activitiesTitle: "Altre attività",
     // Reverse chronology, using the ending year for multi-year activities.
     activities: [
       {
@@ -219,7 +219,7 @@ export const content: Record<Language, Content> = {
       {
         year: "2025",
         date: "Giugno 2025",
-        title: "Scienza a tu per tu",
+        title: "A tu per tu con la scienza",
         context: "Università di Modena e Reggio Emilia",
         description:
           "Un percorso universitario di 36 ore con lezioni e laboratori di fisica, matematica e informatica.",
@@ -293,9 +293,9 @@ export const content: Record<Language, Content> = {
         tags: ["Python", "PyTorch", "ImputeFormer"],
         role: "Ricerca, sviluppo del modello e sito web",
         paragraphs: [
-          "A WebValley 2025 ho lavorato con il team a un primo modello BiLSTM, usando osservazioni Meteotrentino e dati ERA5. Dopo la scuola estiva ho coordinato l’evoluzione del progetto verso un modello basato su ImputeFormer.",
-          "Durante WebValley ho seguito anche un percorso laboratoriale con psicologi e designer di Artigianelli su UX design, lavoro di squadra e public speaking, applicati allo sviluppo del progetto e alla presentazione finale.",
-          "Ho lavorato alla valutazione su sei variabili meteorologiche, con 13 tipi di lacune e cinque seed di training in un benchmark riproducibile, confrontando il modello con BiLSTM e interpolazione. Ho inoltre sviluppato il sito per esplorare le stazioni e confrontare dati osservati e ricostruiti.",
+          "A WebValley 2025 ho lavorato con il team a un primo modello BiLSTM, usando osservazioni Meteotrentino e dati ERA5. Dopo la scuola estiva ho coordinato l’evoluzione del progetto verso ImputeFormer.",
+          "Durante WebValley ho seguito anche un percorso laboratoriale con psicologi e designer di Artigianelli su UX design, lavoro di squadra e public speaking, applicati allo sviluppo del progetto.",
+          "Ho lavorato alla valutazione su sei variabili meteorologiche, con 13 tipi di lacune e cinque seed di training in un benchmark riproducibile, confrontando il modello con BiLSTM e interpolazione. Ho anche costruito il sito per esplorare i risultati.",
         ],
         results: [
           {
@@ -341,14 +341,11 @@ export const content: Record<Language, Content> = {
         tags: ["SwiftUI", "Appwrite", "UI/UX"],
         role: "Direzione tecnica e di prodotto, sviluppo iOS",
         paragraphs: [
-          "Fyre è un progetto di gruppo con client Swift/SwiftUI per iOS, Kotlin/Jetpack Compose per Android e React/TypeScript per il web. Mi sono occupato della direzione tecnica e di prodotto, delle scelte di interfaccia e dello sviluppo del client iOS in SwiftUI.",
-          "Ho contribuito alla struttura del backend Appwrite per utenti, matching, chat ed eventi e al lavoro condiviso su contratti condivisi, test automatici, linting, build di rilascio e CI su backend, web, Android e iOS.",
+          "Fyre è un progetto di gruppo con client Swift/SwiftUI per iOS, Kotlin/Jetpack Compose per Android e React/TypeScript per il web. Mi sono occupato della direzione tecnica e di prodotto, dando forma all’interfaccia.",
+          "Ho contribuito alla struttura del backend Appwrite per utenti, matching, chat ed eventi e al lavoro condiviso su contratti condivisi, test automatici, linting, build di rilascio e CI attraverso backend, web, Android e iOS.",
         ],
         links: [
-          {
-            label: "Codice su GitHub",
-            href: "https://github.com/itsminni/fyre",
-          },
+          { label: "Codice su GitHub", href: "https://github.com/itsminni/fyre" },
         ],
       },
       {
@@ -441,7 +438,7 @@ export const content: Record<Language, Content> = {
         title: "WebValley & Giano",
         place: "Fondazione Bruno Kessler",
         description:
-          "One of 12 participants selected nationally for WebValley 2025, where I worked on weather data research with the Giano team. The programme also included workshops on UX design, teamwork and public speaking, applied to developing and presenting the project.",
+          "One of 12 participants selected nationally for WebValley 2025, where I worked on weather data research with the Giano team. The programme also included workshops on UX design, teamwork and public speaking.",
         link: {
           label: "Official WebValley website",
           href: "https://webvalley.fbk.eu",
@@ -457,8 +454,7 @@ export const content: Record<Language, Content> = {
         date: "February 2025",
         title: "Software development internship",
         place: "QUIX S.R.L.",
-        description:
-          "40 hours of Java programming and collaborative development.",
+        description: "40 hours of Java programming and collaborative development.",
       },
       {
         date: "2021 — 2026",
@@ -472,7 +468,7 @@ export const content: Record<Language, Content> = {
       {
         title: "Comparing results",
         description:
-          "In Giano, I compared the model with BiLSTM and interpolation, repeating the tests across different weather variables and gap patterns. This helps me see where a change improves the results and where it makes no difference.",
+          "In Giano, I compared the model with BiLSTM and interpolation, repeating the tests across different weather variables and gap patterns. This helps me see where a change improves the result.",
       },
       {
         title: "Working on shared code",
@@ -482,7 +478,7 @@ export const content: Record<Language, Content> = {
       {
         title: "Making the work available to inspect",
         description:
-          "For Giano, I also built the website for exploring stations and comparing observed and reconstructed data. It shows what the model does, alongside the code and the experiments behind the results.",
+          "For Giano, I also built the website for exploring stations and comparing observed and reconstructed data. It shows what the model does, alongside the code and the experiments behind the project.",
       },
     ],
     activitiesLabel: "04 / OTHER ACTIVITIES",
@@ -494,8 +490,7 @@ export const content: Record<Language, Content> = {
         date: "September 2026",
         title: "Festival Informatici Senza Frontiere",
         context: "Festival · Rovereto",
-        description:
-          "I applied for the festival’s student scholarship.",
+        description: "I applied for the festival’s student scholarship.",
         link: {
           label: "Official festival website",
           href: "https://festival.informaticisenzafrontiere.org/",
@@ -604,9 +599,9 @@ export const content: Record<Language, Content> = {
         tags: ["Python", "PyTorch", "ImputeFormer"],
         role: "Research, model development and website",
         paragraphs: [
-          "At WebValley 2025, I worked with the team on an initial BiLSTM model using Meteotrentino observations and ERA5 data. After the summer school, I coordinated the project’s evolution towards an ImputeFormer-based model.",
-          "During WebValley, I also took part in a workshop programme with psychologists and Artigianelli designers on UX design, teamwork and public speaking, applied to developing the project and its final presentation.",
-          "I worked on evaluation across six weather variables, 13 gap patterns and five training seeds in a reproducible benchmark, comparing the model with BiLSTM and interpolation. I also built the website for exploring stations and comparing observed and reconstructed data.",
+          "At WebValley 2025, I worked with the team on an initial BiLSTM model using Meteotrentino observations and ERA5 data. After the summer school, I coordinated the project’s evolution toward ImputeFormer.",
+          "During WebValley, I also took part in a workshop programme with psychologists and Artigianelli designers on UX design, teamwork and public speaking, applied to developing the project.",
+          "I worked on evaluation across six weather variables, 13 gap patterns and five training seeds in a reproducible benchmark, comparing the model with BiLSTM and interpolation. I also built the website for exploring the results.",
         ],
         results: [
           {
@@ -652,8 +647,8 @@ export const content: Record<Language, Content> = {
         tags: ["SwiftUI", "Appwrite", "UI/UX"],
         role: "Technical and product direction, iOS development",
         paragraphs: [
-          "Fyre is a team project with Swift/SwiftUI for iOS, Kotlin/Jetpack Compose for Android and React/TypeScript for the web. I led the technical and product direction, shaped the interface and built the iOS client in SwiftUI.",
-          "I helped structure the Appwrite backend for users, matching, chat and events, and contributed to shared contracts, automated tests, linting, release builds and CI across the backend, web, Android and iOS.",
+          "Fyre is a team project with Swift/SwiftUI for iOS, Kotlin/Jetpack Compose for Android and React/TypeScript for the web. I led the technical and product direction, shaped the interface and worked on the iOS client.",
+          "I helped structure the Appwrite backend for users, matching, chat and events, and contributed to shared contracts, automated tests, linting, release builds and CI across the backend, web, Android and iOS clients.",
         ],
         links: [
           { label: "Code on GitHub", href: "https://github.com/itsminni/fyre" },
