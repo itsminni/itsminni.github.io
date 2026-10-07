@@ -71,7 +71,7 @@ export const content: Record<Language, Content> = {
     nav: ["Progetti", "Chi sono", "Percorso", "Contatti"],
     skip: "Vai al contenuto",
     headline: ["Gabriele", "Mininni."],
-    bio: "Studio Computer Science all’Università di Trento. Qui raccolgo i progetti su cui lavoro, tra machine learning e sviluppo di app.",
+    bio: "Studente di Computer Science all’Università di Trento, con progetti nell’ambito del machine learning e dello sviluppo di app.",
     explore: "Progetti",
     contact: "Scrivimi",
     selected: "01 / PROGETTI",
@@ -82,10 +82,10 @@ export const content: Record<Language, Content> = {
     role: "Il mio contributo",
     resultsTitle: "Risultati del benchmark",
     aboutLabel: "02 / CHI SONO",
-    aboutTitle: "Qualche informazione su di me.",
+    aboutTitle: "Profilo e interessi.",
     about: [
-      "Studio Computer Science a Trento, dopo un percorso al liceo scientifico delle scienze applicate.",
-      "Nel 2025 ho partecipato a WebValley, la scuola estiva di FBK. Lì è iniziato il lavoro su Giano, che ho poi continuato con il gruppo. Negli altri progetti mi occupo soprattutto di sviluppo iOS e Python.",
+      "Formazione in Computer Science presso l’Università di Trento, dopo il diploma al liceo scientifico, opzione scienze applicate.",
+      "Partecipazione a WebValley 2025, la scuola estiva di FBK da cui è nato Giano, proseguito con il gruppo di ricerca. Le altre attività progettuali si concentrano sullo sviluppo iOS e sulla programmazione in Python.",
     ],
     toolkit: "Competenze",
     skills: [
@@ -120,7 +120,7 @@ export const content: Record<Language, Content> = {
         title: "SORINT Summer Campus",
         place: "SORINT",
         description:
-          "Tra i 18 partecipanti selezionati per due settimane su infrastrutture IT, cloud, cybersecurity, protezione dei dati, AI e DevOps.",
+          "Selezione tra i 18 partecipanti a un percorso di due settimane su infrastrutture IT, cloud, cybersecurity, protezione dei dati, AI e DevOps.",
         link: {
           label: "Scopri SORINT4School",
           href: "https://www.sorint.com/en/our-culture/sorint4school/",
@@ -131,7 +131,7 @@ export const content: Record<Language, Content> = {
         title: "WebValley & Giano",
         place: "Fondazione Bruno Kessler",
         description:
-          "Tra i 12 partecipanti selezionati a livello nazionale per WebValley 2025, ho lavorato alla ricerca sui dati meteorologici con il team Giano. Il percorso comprendeva anche workshop su UX design, lavoro di squadra e public speaking.",
+          "Selezione tra i 12 partecipanti a livello nazionale per WebValley 2025 e attività di ricerca sui dati meteorologici con il team Giano. Il percorso comprendeva workshop su UX design, lavoro di squadra e public speaking.",
         link: {
           label: "Sito ufficiale WebValley",
           href: "https://webvalley.fbk.eu",
@@ -156,22 +156,22 @@ export const content: Record<Language, Content> = {
         description: "Diploma di liceo scientifico, opzione scienze applicate.",
       },
     ],
-    workingTitle: "Come lavoro",
+    workingTitle: "Metodo di lavoro",
     working: [
       {
         title: "Confrontare i risultati",
         description:
-          "In Giano ho confrontato il modello con BiLSTM e interpolazione, ripetendo le prove su variabili meteorologiche e tipi di lacune diversi. Mi serve a capire dove una modifica migliora il risultato.",
+          "Valutazione del modello Giano rispetto a BiLSTM e interpolazione, con prove su diverse variabili meteorologiche e tipologie di lacune per misurare l’effetto delle modifiche.",
       },
       {
         title: "Lavorare sullo stesso codice",
         description:
-          "Fyre ha client iOS, Android e web che devono comunicare con lo stesso backend. Ho lavorato alle regole comuni per lo scambio dei dati, ai test automatici e ai controlli sulle modifiche.",
+          "Definizione di contratti comuni per lo scambio dei dati tra i client iOS, Android e web di Fyre e il backend, con test automatici e controlli sulle modifiche al codice.",
       },
       {
         title: "Rendere il lavoro consultabile",
         description:
-          "Per Giano ho sviluppato anche il sito che permette di esplorare le stazioni e confrontare i dati osservati con quelli ricostruiti. È un modo per mostrare cosa fa il modello, insieme al codice e agli esperimenti dietro il progetto.",
+          "Sviluppo del sito di Giano per esplorare le stazioni e confrontare i dati osservati con quelli ricostruiti, rendendo consultabili i risultati insieme al codice e agli esperimenti del progetto.",
       },
     ],
     activitiesLabel: "04 / ALTRE ATTIVITÀ",
@@ -184,7 +184,7 @@ export const content: Record<Language, Content> = {
         title: "Festival Informatici Senza Frontiere",
         context: "Festival · Rovereto",
         description:
-          "Ho presentato la candidatura alla borsa di studio del festival.",
+          "Assegnazione di una borsa di partecipazione per il Festival Informatici Senza Frontiere 2026.",
         link: {
           label: "Sito ufficiale del festival",
           href: "https://festival.informaticisenzafrontiere.org/",
@@ -202,7 +202,7 @@ export const content: Record<Language, Content> = {
         title: "Open day del liceo Corni",
         context: "IIS “F. Corni”",
         description:
-          "Durante gli open day ho presentato a studenti e famiglie le attività curricolari ed extracurricolari di informatica del liceo.",
+          "Presentazione delle attività curricolari ed extracurricolari di informatica del liceo a studenti e famiglie durante gli open day.",
       },
       {
         year: "2025",
@@ -210,7 +210,7 @@ export const content: Record<Language, Content> = {
         title: "Olimpiadi italiane di Intelligenza Artificiale",
         context: "Competizione",
         description:
-          "Ho partecipato alla selezione per la finale nazionale, conclusa a 1,5 punti dalla qualificazione.",
+          "Partecipazione alla selezione per la finale nazionale, conclusa a 1,5 punti dalla qualificazione.",
         link: {
           label: "Sito ufficiale",
           href: "https://oia.anpc.it/",
@@ -222,7 +222,7 @@ export const content: Record<Language, Content> = {
         title: "A tu per tu con la scienza",
         context: "Università di Modena e Reggio Emilia",
         description:
-          "Un percorso universitario di 36 ore con lezioni e laboratori di fisica, matematica e informatica.",
+          "Percorso universitario di 36 ore con lezioni e laboratori di fisica, matematica e informatica.",
         link: {
           label: "Sito ufficiale dell’iniziativa",
           href: "https://www.outreach.fim.unimore.it/stage-e-scuole-estive/a-tu-per-tu-con-la-scienza/",
@@ -234,7 +234,7 @@ export const content: Record<Language, Content> = {
         title: "Green Horizon",
         context: "UniMoRe · FEM · Festival PLAY",
         description:
-          "Ho partecipato allo sviluppo di un videogioco educativo sulla sostenibilità, insieme a esperti di UniMoRe e sviluppatori di FEM. Il progetto è stato presentato al Festival PLAY 2025.",
+          "Contributo allo sviluppo di un videogioco educativo sulla sostenibilità, in collaborazione con esperti di UniMoRe e sviluppatori di FEM. Progetto presentato al Festival PLAY 2025.",
         link: {
           label: "Scopri il progetto",
           href: "https://community.fem.digital/t/green-horizon-un-videogioco-sullambiente-creato-da-4-scuole/2660",
@@ -246,7 +246,7 @@ export const content: Record<Language, Content> = {
         title: "Olimpiadi Italiane di Informatica",
         context: "Competizione",
         description:
-          "Ho partecipato alle selezioni e mi sono qualificato alla fase regionale.",
+          "Partecipazione alle selezioni e qualificazione alla fase regionale.",
         link: {
           label: "Sito ufficiale",
           href: "https://www.olimpiadi-informatica.it/",
@@ -258,7 +258,7 @@ export const content: Record<Language, Content> = {
         title: "Navigating the digital world: do you really feel safe?",
         context: "Gazzetta di Modena · Scuola 2030",
         description:
-          "Ho collaborato con ingegneri informatici alla scrittura di un articolo su privacy, sicurezza online e software open source per il programma Scuola 2030.",
+          "Collaborazione con ingegneri informatici alla redazione di un articolo su privacy, sicurezza online e software open source nell’ambito del programma Scuola 2030.",
         link: {
           label: "Visualizza l’articolo",
           href: "/documents/gazzetta.pdf",
@@ -270,7 +270,7 @@ export const content: Record<Language, Content> = {
         title: "An interview with Leonardo Ciocca",
         context: "POP CORNI",
         description:
-          "Ho collaborato alla scrittura di un articolo su e.DO, il braccio robotico di COMAU pensato per introdurre i giovani studenti al mondo della robotica.",
+          "Contributo alla redazione di un articolo su e.DO, il braccio robotico di COMAU pensato per introdurre i giovani studenti alla robotica.",
         link: {
           label: "Leggi l’articolo",
           href: "https://cspace.spaggiari.eu//pub/MOIT0004/giornalino%20scolastico/Giornalino%20Pop-Corni%20n.6%20-%20Maggio%202023.pdf",
@@ -289,13 +289,13 @@ export const content: Record<Language, Content> = {
         category: "MACHINE LEARNING · RICERCA",
         period: "2025 — 2026",
         description:
-          "Un modello per ricostruire i dati mancanti delle stazioni meteo. Nato a FBK WebValley e sviluppato con il team Giano, con cui siamo finalisti al Premio Marilli.",
+          "Modello per la ricostruzione dei dati mancanti delle stazioni meteorologiche, nato a FBK WebValley e sviluppato con il team Giano, finalista al Premio Marilli.",
         tags: ["Python", "PyTorch", "ImputeFormer"],
         role: "Ricerca, sviluppo del modello e sito web",
         paragraphs: [
-          "A WebValley 2025 ho lavorato con il team a un primo modello BiLSTM, usando osservazioni Meteotrentino e dati ERA5. Dopo la scuola estiva ho coordinato l’evoluzione del progetto verso ImputeFormer.",
-          "Durante WebValley ho seguito anche un percorso laboratoriale con psicologi e designer di Artigianelli su UX design, lavoro di squadra e public speaking, applicati allo sviluppo del progetto.",
-          "Ho lavorato alla valutazione su sei variabili meteorologiche, con 13 tipi di lacune e cinque seed di training in un benchmark riproducibile, confrontando il modello con BiLSTM e interpolazione. Ho anche costruito il sito per esplorare i risultati.",
+          "Sviluppo con il team di un primo modello BiLSTM durante WebValley 2025, utilizzando osservazioni Meteotrentino e dati ERA5. Successivo coordinamento dell’evoluzione del progetto verso ImputeFormer.",
+          "Partecipazione a un percorso laboratoriale con psicologi e designer di Artigianelli su UX design, lavoro di squadra e public speaking, applicati allo sviluppo del progetto.",
+          "Valutazione su sei variabili meteorologiche, 13 tipologie di lacune e cinque seed di training in un benchmark riproducibile, con confronto rispetto a BiLSTM e interpolazione. Sviluppo del sito web per l’esplorazione dei risultati.",
         ],
         results: [
           {
@@ -337,12 +337,12 @@ export const content: Record<Language, Content> = {
         category: "APP · IOS, ANDROID & WEB",
         period: "2026",
         description:
-          "Un’app per conoscere persone e organizzare eventi. Ho sviluppato il client iOS e lavorato al backend e alle scelte di interfaccia.",
+          "App per conoscere persone e organizzare eventi, con sviluppo del client iOS e contributi al backend e alla progettazione dell’interfaccia.",
         tags: ["SwiftUI", "Appwrite", "UI/UX"],
         role: "Direzione tecnica e di prodotto, sviluppo iOS",
         paragraphs: [
-          "Fyre è un progetto di gruppo con client Swift/SwiftUI per iOS, Kotlin/Jetpack Compose per Android e React/TypeScript per il web. Mi sono occupato della direzione tecnica e di prodotto, dando forma all’interfaccia.",
-          "Ho contribuito alla struttura del backend Appwrite per utenti, matching, chat ed eventi e al lavoro condiviso su contratti condivisi, test automatici, linting, build di rilascio e CI attraverso backend, web, Android e iOS.",
+          "Progetto di gruppo con client Swift/SwiftUI per iOS, Kotlin/Jetpack Compose per Android e React/TypeScript per il web. Direzione tecnica e di prodotto, progettazione dell’interfaccia e sviluppo del client iOS.",
+          "Contributo alla struttura del backend Appwrite per utenti, matching, chat ed eventi e alla definizione di contratti condivisi, test automatici, linting, build di rilascio e CI per backend e client web, Android e iOS.",
         ],
         links: [
           { label: "Codice su GitHub", href: "https://github.com/itsminni/fyre" },
@@ -355,7 +355,7 @@ export const content: Record<Language, Content> = {
         category: "APP · IN SVILUPPO",
         period: "2027",
         description:
-          "Un’app educativa dedicata all’arte. La pubblicazione è prevista nel 2027.",
+          "App educativa dedicata all’arte, con pubblicazione prevista nel 2027.",
         tags: [],
         role: "",
         paragraphs: [],
@@ -367,7 +367,7 @@ export const content: Record<Language, Content> = {
         name: "Bot Telegram",
         category: "PROGETTO PRIVATO",
         period: "2024 — oggi",
-        description: "Un bot Telegram per uso personale, sviluppato in Python.",
+        description: "Bot Telegram per uso personale, sviluppato in Python.",
         tags: [],
         role: "",
         paragraphs: [],
@@ -379,7 +379,7 @@ export const content: Record<Language, Content> = {
     nav: ["Projects", "About", "Background", "Contact"],
     skip: "Skip to content",
     headline: ["Gabriele", "Mininni."],
-    bio: "I study Computer Science at the University of Trento. This is a collection of my work in machine learning and app development.",
+    bio: "Computer Science student at the University of Trento, with projects in machine learning and app development.",
     explore: "Projects",
     contact: "Get in touch",
     selected: "01 / PROJECTS",
@@ -390,10 +390,10 @@ export const content: Record<Language, Content> = {
     role: "My contribution",
     resultsTitle: "Benchmark results",
     aboutLabel: "02 / ABOUT",
-    aboutTitle: "A little about me.",
+    aboutTitle: "Profile and interests.",
     about: [
-      "I study Computer Science in Trento after completing an applied-sciences programme at scientific high school.",
-      "In 2025, I attended WebValley, FBK’s summer school. That’s where we started Giano, which I continued working on with the team. My other projects mainly involve iOS development and Python.",
+      "Computer Science studies at the University of Trento, following a scientific high-school diploma in applied sciences.",
+      "Participation in WebValley 2025, FBK’s summer school where Giano began, followed by continued work with the research team. Other projects focus on iOS development and Python programming.",
     ],
     toolkit: "Skills",
     skills: [
@@ -427,7 +427,7 @@ export const content: Record<Language, Content> = {
         title: "SORINT Summer Campus",
         place: "SORINT",
         description:
-          "One of 18 selected participants in a two-week programme on IT infrastructure, cloud, cybersecurity, data protection, AI and DevOps.",
+          "Selected as one of 18 participants in a two-week programme on IT infrastructure, cloud, cybersecurity, data protection, AI and DevOps.",
         link: {
           label: "Learn about SORINT4School",
           href: "https://www.sorint.com/en/our-culture/sorint4school/",
@@ -438,7 +438,7 @@ export const content: Record<Language, Content> = {
         title: "WebValley & Giano",
         place: "Fondazione Bruno Kessler",
         description:
-          "One of 12 participants selected nationally for WebValley 2025, where I worked on weather data research with the Giano team. The programme also included workshops on UX design, teamwork and public speaking.",
+          "Selected as one of 12 participants nationally for WebValley 2025, with research on weather data as part of the Giano team. The programme included workshops on UX design, teamwork and public speaking.",
         link: {
           label: "Official WebValley website",
           href: "https://webvalley.fbk.eu",
@@ -463,22 +463,22 @@ export const content: Record<Language, Content> = {
         description: "Scientific high-school diploma, applied-sciences track.",
       },
     ],
-    workingTitle: "How I work",
+    workingTitle: "Working approach",
     working: [
       {
         title: "Comparing results",
         description:
-          "In Giano, I compared the model with BiLSTM and interpolation, repeating the tests across different weather variables and gap patterns. This helps me see where a change improves the result.",
+          "Evaluation of the Giano model against BiLSTM and interpolation, with tests across different weather variables and gap patterns to measure the effect of changes.",
       },
       {
         title: "Working on shared code",
         description:
-          "Fyre has iOS, Android and web clients that need to communicate with the same backend. Alongside the iOS client, I worked on shared data contracts, automated tests and checks for code changes.",
+          "Definition of shared data contracts between Fyre’s iOS, Android and web clients and the backend, supported by automated tests and checks for code changes.",
       },
       {
         title: "Making the work available to inspect",
         description:
-          "For Giano, I also built the website for exploring stations and comparing observed and reconstructed data. It shows what the model does, alongside the code and the experiments behind the project.",
+          "Development of the Giano website for exploring stations and comparing observed and reconstructed data, making results available alongside the project’s code and experiments.",
       },
     ],
     activitiesLabel: "04 / OTHER ACTIVITIES",
@@ -490,7 +490,8 @@ export const content: Record<Language, Content> = {
         date: "September 2026",
         title: "Festival Informatici Senza Frontiere",
         context: "Festival · Rovereto",
-        description: "I applied for the festival’s student scholarship.",
+        description:
+          "Awarded a participation scholarship for the Festival Informatici Senza Frontiere 2026.",
         link: {
           label: "Official festival website",
           href: "https://festival.informaticisenzafrontiere.org/",
@@ -508,7 +509,7 @@ export const content: Record<Language, Content> = {
         title: "Open Days at Corni High School",
         context: "IIS “F. Corni”",
         description:
-          "At the school’s open days, I presented its curricular and extracurricular computer science activities to prospective students and their families.",
+          "Presentation of the school’s curricular and extracurricular computer science activities to prospective students and their families during open days.",
       },
       {
         year: "2025",
@@ -516,7 +517,7 @@ export const content: Record<Language, Content> = {
         title: "Italian AI Olympiad",
         context: "Competition",
         description:
-          "I took part in the selection round for the national final, finishing 1.5 points short of qualification.",
+          "Participation in the selection round for the national final, finishing 1.5 points short of qualification.",
         link: {
           label: "Official website",
           href: "https://oia.anpc.it/",
@@ -528,7 +529,7 @@ export const content: Record<Language, Content> = {
         title: "Up Close with Science",
         context: "University of Modena and Reggio Emilia",
         description:
-          "A 36-hour university programme with lectures and lab sessions in physics, mathematics and computer science.",
+          "36-hour university programme with lectures and lab sessions in physics, mathematics and computer science.",
         link: {
           label: "Official programme website",
           href: "https://www.outreach.fim.unimore.it/stage-e-scuole-estive/a-tu-per-tu-con-la-scienza/",
@@ -540,7 +541,7 @@ export const content: Record<Language, Content> = {
         title: "Green Horizon",
         context: "UniMoRe · FEM · PLAY Festival",
         description:
-          "I helped develop an educational game about sustainability with UniMoRe experts and FEM developers. The project was presented at PLAY Festival 2025.",
+          "Contribution to the development of an educational game about sustainability, in collaboration with UniMoRe experts and FEM developers. Project presented at PLAY Festival 2025.",
         link: {
           label: "View the project",
           href: "https://community.fem.digital/t/green-horizon-un-videogioco-sullambiente-creato-da-4-scuole/2660",
@@ -552,7 +553,7 @@ export const content: Record<Language, Content> = {
         title: "Italian Olympiad in Informatics",
         context: "Competition",
         description:
-          "I took part in the selection rounds and qualified for the regional stage.",
+          "Participation in the selection rounds and qualification for the regional stage.",
         link: {
           label: "Official website",
           href: "https://www.olimpiadi-informatica.it/",
@@ -564,7 +565,7 @@ export const content: Record<Language, Content> = {
         title: "Navigating the digital world: do you really feel safe?",
         context: "Gazzetta di Modena · Scuola 2030",
         description:
-          "I co-authored an article on privacy, online security and open-source software with software engineers, as part of the Scuola 2030 programme.",
+          "Co-authorship of an article on privacy, online security and open-source software with software engineers, as part of the Scuola 2030 programme.",
         link: {
           label: "View the article",
           href: "/documents/gazzetta.pdf",
@@ -576,7 +577,7 @@ export const content: Record<Language, Content> = {
         title: "An interview with Leonardo Ciocca",
         context: "POP CORNI",
         description:
-          "I co-authored an article about e.DO, COMAU’s robotic arm designed to introduce young students to robotics.",
+          "Co-authorship of an article about e.DO, COMAU’s robotic arm designed to introduce young students to robotics.",
         link: {
           label: "Read the article",
           href: "https://cspace.spaggiari.eu//pub/MOIT0004/giornalino%20scolastico/Giornalino%20Pop-Corni%20n.6%20-%20Maggio%202023.pdf",
@@ -595,13 +596,13 @@ export const content: Record<Language, Content> = {
         category: "MACHINE LEARNING · RESEARCH",
         period: "2025 — 2026",
         description:
-          "A model for reconstructing missing weather station data. Started at FBK WebValley and developed with the Giano team, with whom we are finalists for the Premio Marilli.",
+          "Model for reconstructing missing weather station data, started at FBK WebValley and developed with the Giano team, a finalist for the Premio Marilli.",
         tags: ["Python", "PyTorch", "ImputeFormer"],
         role: "Research, model development and website",
         paragraphs: [
-          "At WebValley 2025, I worked with the team on an initial BiLSTM model using Meteotrentino observations and ERA5 data. After the summer school, I coordinated the project’s evolution toward ImputeFormer.",
-          "During WebValley, I also took part in a workshop programme with psychologists and Artigianelli designers on UX design, teamwork and public speaking, applied to developing the project.",
-          "I worked on evaluation across six weather variables, 13 gap patterns and five training seeds in a reproducible benchmark, comparing the model with BiLSTM and interpolation. I also built the website for exploring the results.",
+          "Development of an initial BiLSTM model with the team during WebValley 2025, using Meteotrentino observations and ERA5 data. Subsequent coordination of the project’s evolution toward ImputeFormer.",
+          "Participation in a workshop programme with psychologists and Artigianelli designers on UX design, teamwork and public speaking, applied to developing the project.",
+          "Evaluation across six weather variables, 13 gap patterns and five training seeds in a reproducible benchmark, comparing the model with BiLSTM and interpolation. Website development for exploring the results.",
         ],
         results: [
           {
@@ -643,12 +644,12 @@ export const content: Record<Language, Content> = {
         category: "APP · IOS, ANDROID & WEB",
         period: "2026",
         description:
-          "An app for meeting people and organising events. I built the iOS client and worked on the backend and interface design.",
+          "App for meeting people and organising events, with iOS client development and contributions to the backend and interface design.",
         tags: ["SwiftUI", "Appwrite", "UI/UX"],
         role: "Technical and product direction, iOS development",
         paragraphs: [
-          "Fyre is a team project with Swift/SwiftUI for iOS, Kotlin/Jetpack Compose for Android and React/TypeScript for the web. I led the technical and product direction, shaped the interface and worked on the iOS client.",
-          "I helped structure the Appwrite backend for users, matching, chat and events, and contributed to shared contracts, automated tests, linting, release builds and CI across the backend, web, Android and iOS clients.",
+          "Team project with Swift/SwiftUI for iOS, Kotlin/Jetpack Compose for Android and React/TypeScript for the web. Technical and product direction, interface design and iOS client development.",
+          "Contribution to the Appwrite backend structure for users, matching, chat and events, and to shared contracts, automated tests, linting, release builds and CI for the backend and web, Android and iOS clients.",
         ],
         links: [
           { label: "Code on GitHub", href: "https://github.com/itsminni/fyre" },
@@ -661,7 +662,7 @@ export const content: Record<Language, Content> = {
         category: "APP · IN DEVELOPMENT",
         period: "2027",
         description:
-          "An educational app about art. Publication is planned for 2027.",
+          "Educational app about art, with publication planned for 2027.",
         tags: [],
         role: "",
         paragraphs: [],
@@ -673,7 +674,7 @@ export const content: Record<Language, Content> = {
         name: "Telegram Bot",
         category: "PRIVATE PROJECT",
         period: "2024 — present",
-        description: "A Telegram bot for personal use, built with Python.",
+        description: "Telegram bot for personal use, built with Python.",
         tags: [],
         role: "",
         paragraphs: [],
