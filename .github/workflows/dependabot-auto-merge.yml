@@ -37,11 +37,10 @@ jobs:
         with:
           github-token: ${{ github.token }}
 
-      - name: Wait for CI and merge dependency updates
+      - name: Wait for CI and merge security updates
         if: >-
           steps.metadata.outputs.package-ecosystem == 'npm_and_yarn' &&
-          (steps.metadata.outputs.dependency-group == 'security' ||
-           steps.metadata.outputs.dependency-group == 'versions') &&
+          steps.metadata.outputs.dependency-group == 'security' &&
           (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
            steps.metadata.outputs.update-type == 'version-update:semver-minor')
         shell: bash
