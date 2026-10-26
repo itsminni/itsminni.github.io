@@ -1,0 +1,80 @@
+name: Dependabot auto-merge
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dependabot-auto-merge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  auto-merge:
+    if: >-
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      # This privileged workflow only reads metadata; it never checks out PR code.
+      - name: Read verified Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@d7267f607e9d3fb96fc2fbe83e0af444713e90b7
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Wait for CI and merge dependency updates
+        if: >-
+          steps.metadata.outputs.package-ecosystem == 'npm_and_yarn' &&
+          (steps.metadata.outputs.dependency-group == 'security' ||
+           steps.metadata.outputs.dependency-group == 'versions') &&
+          (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+           steps.metadata.outputs.update-type == 'version-update:semver-minor')
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Restrict automatic merges to dependency manifests and lockfiles.
+          gh api --paginate "repos/$GH_REPO/pulls/$PR_NUMBER/files" \
+            --jq '.[].filename' | jq -Rse '
+              split("\n") | map(select(length > 0)) |
+              length > 0 and all(. == "package.json" or . == "package-lock.json")
+            '
+
+          # The pull_request CI runs separately with a read-only token.
+          # Wait for it to be scheduled, then require success on this exact head.
+          ci_run_id=""
+          for attempt in {1..30}; do
+            ci_run_id=$(gh run list --workflow ci.yml --event pull_request \
+              --commit "$PR_HEAD_SHA" --limit 1 --json databaseId \
+              --jq '.[0].databaseId // empty')
+            if [ -n "$ci_run_id" ]; then
+              break
+            fi
+            sleep 10
+          done
+          if [ -z "$ci_run_id" ]; then
+            echo "::error::No pull request CI run found; leaving the PR open."
+            exit 1
+          fi
+
+          gh run watch "$ci_run_id" --exit-status --interval 10
+          gh pr merge "$PR_NUMBER" --squash --match-head-commit "$PR_HEAD_SHA"
+
+          # Merges made with GITHUB_TOKEN do not trigger push workflows.
+          # Dispatch CI explicitly so the merged site is built and deployed.
+          gh workflow run ci.yml --ref main

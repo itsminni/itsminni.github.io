@@ -17,8 +17,6 @@ npm run build
 npm run preview
 ```
 
-CI runs lint and the production build on pushes and pull requests to `main`.
-
 ## Content and design
 
 - `src/content.ts`: Italian and English text, project descriptions, skills and background.

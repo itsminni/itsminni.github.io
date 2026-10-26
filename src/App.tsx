@@ -3,6 +3,10 @@ import { content } from "./content";
 import type { Content, Language, Project } from "./content";
 
 const anchors = ["projects", "about", "background", "contact"];
+const languagePaths: Record<Language, string> = {
+  it: import.meta.env.BASE_URL,
+  en: `${import.meta.env.BASE_URL}en/`,
+};
 const email = "minni.code@icloud.com";
 type ExternalLink = { label: string; href: string };
 
@@ -32,7 +36,7 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   );
 }
 
-function ProjectVisual({ id, language }: { id: string; language: Language }) {
+function ProjectVisual({ id }: { id: string }) {
   return (
     <div className={`project-visual visual-${id}`} aria-hidden="true">
       {id === "giano" && (
@@ -59,21 +63,82 @@ function ProjectVisual({ id, language }: { id: string; language: Language }) {
           />
         </>
       )}
-      {id === "arthint" && (
-        <>
-          <div className="art-frame frame-one" />
-          <div className="art-frame frame-two" />
-          <span className="art-letter">
-            A<span>h</span>
-          </span>
-        </>
-      )}
-      {id === "telegram-bot" && (
-        <span className="private-project-label">
-          {language === "it" ? "Progetto privato" : "Private project"}
-        </span>
-      )}
     </div>
+  );
+}
+
+function ProjectDetails({
+  project,
+  language,
+  idPrefix,
+}: {
+  project: Project;
+  language: Language;
+  idPrefix: string;
+}) {
+  const c = content[language];
+  const ResultsHeading = idPrefix === "dialog" ? "h3" : "h5";
+  const ResultHeading = idPrefix === "dialog" ? "h4" : "h6";
+  return (
+    <>
+      <div className="dialog-role">
+        <span className="eyebrow">{c.role}</span>
+        <p>{project.role}</p>
+      </div>
+      {project.paragraphs.map((paragraph) => (
+        <p className="dialog-paragraph" key={paragraph}>
+          {paragraph}
+        </p>
+      ))}
+      {project.results && (
+        <section
+          className="project-results"
+          aria-labelledby={`${idPrefix}-results-title`}
+        >
+          <ResultsHeading
+            className="project-results-title"
+            id={`${idPrefix}-results-title`}
+          >
+            {c.resultsTitle}
+          </ResultsHeading>
+          {project.results.map((result) => (
+            <div className="result-group" key={result.title}>
+              <ResultHeading className="result-title">{result.title}</ResultHeading>
+              <p>{result.description}</p>
+              <dl>
+                {result.metrics.map((metric) => (
+                  <div key={metric.label}>
+                    <dt>{metric.label}</dt>
+                    <dd>{metric.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          ))}
+        </section>
+      )}
+      <div className="tags">
+        {project.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </div>
+      {project.links.length > 0 && (
+        <div className="dialog-links">
+          {project.links.map((link) => (
+            <a
+              className="text-link"
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              key={link.href}
+            >
+              {link.label}
+              <Arrow diagonal />
+            </a>
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
@@ -136,75 +201,15 @@ function ProjectDialog({
         </div>
         <h2 id="dialog-title">{project.name}</h2>
         <p className="dialog-period">{project.period}</p>
-        <div className="dialog-role">
-          <span className="eyebrow">{c.role}</span>
-          <p>{project.role}</p>
-        </div>
-        {project.paragraphs.map((paragraph) => (
-          <p className="dialog-paragraph" key={paragraph}>
-            {paragraph}
-          </p>
-        ))}
-        {project.results && (
-          <section
-            className="project-results"
-            aria-labelledby="project-results-title"
-          >
-            <h3 id="project-results-title">{c.resultsTitle}</h3>
-            {project.results.map((result) => (
-              <div className="result-group" key={result.title}>
-                <h4>{result.title}</h4>
-                <p>{result.description}</p>
-                <dl>
-                  {result.metrics.map((metric) => (
-                    <div key={metric.label}>
-                      <dt>{metric.label}</dt>
-                      <dd>{metric.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            ))}
-          </section>
-        )}
-        <div className="tags">
-          {project.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
-        {project.links.length > 0 && (
-          <div className="dialog-links">
-            {project.links.map((link) => (
-              <a
-                className="text-link"
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                key={link.href}
-              >
-                {link.label}
-                <Arrow diagonal />
-              </a>
-            ))}
-          </div>
-        )}
+        <ProjectDetails project={project} language={language} idPrefix="dialog" />
       </div>
     </dialog>
   );
 }
 
-function App() {
-  const [language, setLanguage] = useState<Language>(() => {
-    try {
-      const savedLanguage = localStorage.getItem("portfolio-language");
-      if (savedLanguage === "it" || savedLanguage === "en") {
-        return savedLanguage;
-      }
-      return navigator.language.toLowerCase().startsWith("it") ? "it" : "en";
-    } catch {
-      return navigator.language.toLowerCase().startsWith("it") ? "it" : "en";
-    }
-  });
+function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
+  const [languageReady, setLanguageReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const c = content[language];
@@ -213,17 +218,47 @@ function App() {
   );
 
   useEffect(() => {
+    // Match the prerendered language first; browser preferences apply after hydration.
+    let preferredLanguage: Language = navigator.language.toLowerCase().startsWith("it")
+      ? "it" : "en";
+    try {
+      const savedLanguage = localStorage.getItem("portfolio-language");
+      if (savedLanguage === "it" || savedLanguage === "en") {
+        preferredLanguage = savedLanguage;
+      }
+    } catch {
+      /* Browser language remains available when storage is disabled. */
+    }
+    if (
+      window.location.pathname.replace(/\/$/, "") ===
+      languagePaths.en.replace(/\/$/, "")
+    ) {
+      preferredLanguage = "en";
+    }
+    setLanguage(preferredLanguage);
+    setLanguageReady(true);
+  }, []);
+
+  useEffect(() => {
     document.documentElement.lang = language;
     document.title = "Gabriele Mininni — Portfolio";
     document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute("content", c.bio);
+      .querySelectorAll('meta[name="description"], meta[property="og:description"]')
+      .forEach((meta) => meta.setAttribute("content", c.bio));
+    if (!languageReady) return;
+    if (window.location.pathname !== languagePaths[language]) {
+      window.history.replaceState(
+        window.history.state,
+        "",
+        `${languagePaths[language]}${window.location.search}${window.location.hash}`,
+      );
+    }
     try {
       localStorage.setItem("portfolio-language", language);
     } catch {
       /* The site also works without storage. */
     }
-  }, [language, c.bio]);
+  }, [language, c.bio, languageReady]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -279,16 +314,22 @@ function App() {
               aria-label={language === "it" ? "Lingua" : "Language"}
             >
               {(["it", "en"] as const).map((value) => (
-                <button
+                <a
                   key={value}
-                  type="button"
+                  href={languagePaths[value]}
                   lang={value}
                   aria-label={value === "it" ? "Italiano" : "English"}
-                  aria-pressed={language === value}
-                  onClick={() => setLanguage(value)}
+                  aria-current={language === value ? "page" : undefined}
+                  onClick={(event) => {
+                    if (
+                      event.metaKey || event.ctrlKey || event.shiftKey || event.altKey
+                    ) return;
+                    event.preventDefault();
+                    setLanguage(value);
+                  }}
                 >
                   {value.toUpperCase()}
-                </button>
+                </a>
               ))}
             </div>
             <button
@@ -349,74 +390,92 @@ function App() {
                 <p className="eyebrow">{c.selected}</p>
                 <h2 id="projects-title">{c.projectsTitle}</h2>
               </div>
-              <p className="section-intro">{c.projectsIntro}</p>
             </div>
+            <h3 className="project-group-title">{c.featuredProjectsTitle}</h3>
             <div className="project-grid">
               {c.projects.map((project) => (
                 <article
                   className={`project-card card-${project.id}`}
                   key={project.id}
                 >
-                  {project.paragraphs.length > 0 ? (
-                    <button
-                      type="button"
-                      className="visual-button"
-                      onClick={() => setActiveProject(project.id)}
-                      aria-label={`${c.details}: ${project.name}`}
-                      aria-haspopup="dialog"
-                    >
-                      <ProjectVisual id={project.id} language={language} />
-                      <span className="visual-arrow">
-                        <Arrow diagonal />
-                      </span>
-                    </button>
-                  ) : (
-                    <div className="project-preview">
-                      <ProjectVisual id={project.id} language={language} />
-                    </div>
-                  )}
+                  <a
+                    href={`#project-details-${project.id}`}
+                    className="visual-button"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setActiveProject(project.id);
+                    }}
+                    aria-label={`${c.details}: ${project.name}`}
+                    aria-haspopup={languageReady ? "dialog" : undefined}
+                  >
+                    <ProjectVisual id={project.id} />
+                    <span className="visual-arrow">
+                      <Arrow diagonal />
+                    </span>
+                  </a>
                   <div className="project-info">
                     <div className="project-meta">
                       <span>{project.category}</span>
                       <span>{project.number}</span>
                     </div>
                     <div className="project-title-row">
-                      <h3>{project.name}</h3>
+                      <h4>{project.name}</h4>
                       <span className="project-period">{project.period}</span>
                     </div>
                     <p className="project-description">{project.description}</p>
-                    {project.paragraphs.length > 0 && (
-                      <div className="project-bottom">
-                        <div className="tags">
-                          {project.tags.map((tag) => (
-                            <span key={tag}>{tag}</span>
-                          ))}
-                        </div>
-                        <button
-                          type="button"
-                          className="detail-button"
-                          onClick={() => setActiveProject(project.id)}
-                          aria-label={`${c.details}: ${project.name}`}
-                          aria-haspopup="dialog"
-                        >
-                          <span>{c.details}</span>
-                          <Arrow diagonal />
-                        </button>
+                    <div className="project-bottom">
+                      <div className="tags">
+                        {project.tags.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
                       </div>
-                    )}
+                      <a
+                        href={`#project-details-${project.id}`}
+                        className="detail-button"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setActiveProject(project.id);
+                        }}
+                        aria-label={`${c.details}: ${project.name}`}
+                        aria-haspopup={languageReady ? "dialog" : undefined}
+                      >
+                        <span>{c.details}</span>
+                        <Arrow diagonal />
+                      </a>
+                    </div>
                   </div>
+                  <details className="project-fallback">
+                    <summary>{c.details}</summary>
+                    <div id={`project-details-${project.id}`}>
+                      <ProjectDetails
+                        project={project}
+                        language={language}
+                        idPrefix={`static-${project.id}`}
+                      />
+                    </div>
+                  </details>
                 </article>
               ))}
             </div>
-            <a
-              className="github-link text-link"
-              href="https://github.com/itsminni"
-              target="_blank"
-              rel="noreferrer"
+            <section
+              className="other-projects"
+              aria-labelledby="other-projects-title"
             >
-              {language === "it" ? "Il mio GitHub" : "My GitHub"}
-              <Arrow diagonal />
-            </a>
+              <h3 id="other-projects-title">{c.otherProjectsTitle}</h3>
+              <ul>
+                {c.otherProjects.map((project) => (
+                  <li key={project.id}>
+                    <div>
+                      <h4>{project.name}</h4>
+                      <span className="other-project-status">
+                        {project.status}
+                      </span>
+                    </div>
+                    <p>{project.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
           </section>
 
           <section
@@ -426,43 +485,22 @@ function App() {
           >
             <p className="eyebrow">{c.aboutLabel}</p>
             <div className="about-grid">
-              <div>
-                <h2 id="about-title">{c.aboutTitle}</h2>
-                <div className="about-signature" aria-hidden="true">
-                  Gabriele<span> / minni</span>
-                </div>
-              </div>
               <div className="about-copy">
+                <h2 id="about-title">{c.aboutTitle}</h2>
                 {c.about.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-                <div className="toolkit">
-                  <h3>{c.toolkit}</h3>
-                  <dl>
-                    {c.skills.map((skill) => (
-                      <div key={skill.label}>
-                        <dt>{skill.label}</dt>
-                        <dd>{skill.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
               </div>
-            </div>
-            <div className="working" aria-labelledby="working-title">
-              <h3 id="working-title">{c.workingTitle}</h3>
-              <div className="working-list">
-                {c.working.map((item, index) => (
-                  <div className="working-item" key={item.title}>
-                    <span className="working-number" aria-hidden="true">
-                      0{index + 1}
-                    </span>
-                    <div>
-                      <h4>{item.title}</h4>
-                      <p>{item.description}</p>
+              <div className="toolkit">
+                <h3>{c.toolkit}</h3>
+                <dl>
+                  {c.skills.map((skill) => (
+                    <div key={skill.label}>
+                      <dt>{skill.label}</dt>
+                      <dd>{skill.value}</dd>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </dl>
               </div>
             </div>
           </section>
@@ -526,57 +564,38 @@ function App() {
                 <h2 id="activities-title">{c.activitiesTitle}</h2>
               </div>
             </div>
-            <div className="activity-years">
-              {[...new Set(c.activities.map((item) => item.year))]
-                .sort((a, b) => Number(b) - Number(a))
-                .map((year) => (
-                  <section
-                    className="activity-year-group"
-                    key={year}
-                    aria-labelledby={`activities-${year}`}
-                  >
-                    <h3 id={`activities-${year}`} className="activity-year">
-                      {year}
-                    </h3>
-                    <div className="activity-list">
-                      {c.activities
-                        .filter((item) => item.year === year)
-                        .map((item) => (
-                          <article className="activity" key={item.title}>
-                            <p className="activity-date">{item.date}</p>
-                            <h4>{item.title}</h4>
-                            <p className="activity-context">{item.context}</p>
-                            <p className="activity-description">
-                              {item.description}
-                            </p>
-                            {item.link && (
-                              <a
-                                className="activity-link text-link"
-                                href={item.link.href}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {item.link.label}
-                                <Arrow diagonal />
-                              </a>
-                            )}
-                            {getAdditionalLinks(item).map((link) => (
-                              <a
-                                className="activity-link text-link"
-                                href={link.href}
-                                target="_blank"
-                                rel="noreferrer"
-                                key={link.href}
-                              >
-                                {link.label}
-                                <Arrow diagonal />
-                              </a>
-                            ))}
-                          </article>
-                        ))}
-                    </div>
-                  </section>
-                ))}
+            <div className="activity-list">
+              {c.activities.map((item) => (
+                <article className="activity" key={item.title}>
+                  <p className="activity-date">{item.date}</p>
+                  <h3>{item.title}</h3>
+                  <p className="activity-context">{item.context}</p>
+                  <p className="activity-description">{item.description}</p>
+                  {item.link && (
+                    <a
+                      className="activity-link text-link"
+                      href={item.link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.link.label}
+                      <Arrow diagonal />
+                    </a>
+                  )}
+                  {getAdditionalLinks(item).map((link) => (
+                    <a
+                      className="activity-link text-link"
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      key={link.href}
+                    >
+                      {link.label}
+                      <Arrow diagonal />
+                    </a>
+                  ))}
+                </article>
+              ))}
             </div>
           </section>
 
