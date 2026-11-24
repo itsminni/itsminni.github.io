@@ -18,24 +18,6 @@ function getAdditionalLinks(value: unknown): ExternalLink[] {
   return Array.isArray(links) ? (links as ExternalLink[]) : [];
 }
 
-function Arrow({ diagonal = false }: { diagonal?: boolean }) {
-  return (
-    <svg
-      className="arrow"
-      aria-hidden="true"
-      focusable="false"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d={diagonal ? "M5 19 19 5M5 5h14v14" : "M3 12h18m-7-7 7 7-7 7"} />
-    </svg>
-  );
-}
-
 function ProjectVisual({ id }: { id: string }) {
   return (
     <div className={`project-visual visual-${id}`} aria-hidden="true">
@@ -133,7 +115,6 @@ function ProjectDetails({
               key={link.href}
             >
               {link.label}
-              <Arrow diagonal />
             </a>
           ))}
         </div>
@@ -369,11 +350,9 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
                 <div className="hero-links">
                   <a className="primary-link" href="#projects">
                     {c.explore}
-                    <Arrow />
                   </a>
                   <a className="text-link" href={`mailto:${email}`}>
                     {c.contact}
-                    <Arrow diagonal />
                   </a>
                 </div>
               </div>
@@ -387,7 +366,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
           >
             <div className="section-heading">
               <div>
-                <p className="eyebrow">{c.selected}</p>
                 <h2 id="projects-title">{c.projectsTitle}</h2>
               </div>
             </div>
@@ -409,9 +387,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
                     aria-haspopup={languageReady ? "dialog" : undefined}
                   >
                     <ProjectVisual id={project.id} />
-                    <span className="visual-arrow">
-                      <Arrow diagonal />
-                    </span>
                   </a>
                   <div className="project-info">
                     <div className="project-meta">
@@ -440,7 +415,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
                         aria-haspopup={languageReady ? "dialog" : undefined}
                       >
                         <span>{c.details}</span>
-                        <Arrow diagonal />
                       </a>
                     </div>
                   </div>
@@ -483,7 +457,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
             id="about"
             aria-labelledby="about-title"
           >
-            <p className="eyebrow">{c.aboutLabel}</p>
             <div className="about-grid">
               <div className="about-copy">
                 <h2 id="about-title">{c.aboutTitle}</h2>
@@ -511,7 +484,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
             aria-labelledby="background-title"
           >
             <div className="background-heading">
-              <p className="eyebrow">{c.journeyLabel}</p>
               <h2 id="background-title">{c.journeyTitle}</h2>
             </div>
             <div className="journey">
@@ -531,7 +503,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
                           rel="noreferrer"
                         >
                           {item.link.label}
-                          <Arrow diagonal />
                         </a>
                       )}
                       {getAdditionalLinks(item).map((link) => (
@@ -543,7 +514,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
                           key={link.href}
                         >
                           {link.label}
-                          <Arrow diagonal />
                         </a>
                       ))}
                     </div>
@@ -560,7 +530,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
           >
             <div className="section-heading">
               <div>
-                <p className="eyebrow">{c.activitiesLabel}</p>
                 <h2 id="activities-title">{c.activitiesTitle}</h2>
               </div>
             </div>
@@ -579,7 +548,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
                       rel="noreferrer"
                     >
                       {item.link.label}
-                      <Arrow diagonal />
                     </a>
                   )}
                   {getAdditionalLinks(item).map((link) => (
@@ -591,7 +559,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
                       key={link.href}
                     >
                       {link.label}
-                      <Arrow diagonal />
                     </a>
                   ))}
                 </article>
@@ -604,14 +571,12 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
             id="contact"
             aria-labelledby="contact-title"
           >
-            <p className="eyebrow">{c.contactLabel}</p>
             <div className="contact-grid">
               <h2 id="contact-title">{c.contactTitle}</h2>
               <div>
                 <p>{c.contactText}</p>
                 <a className="email-link" href={`mailto:${email}`}>
                   {email}
-                  <Arrow diagonal />
                 </a>
               </div>
             </div>
@@ -624,17 +589,17 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
               }
             >
               <a href={`mailto:${email}`}>
-                Email <Arrow diagonal />
+                Email
               </a>
               <a
                 href="https://github.com/itsminni"
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub <Arrow diagonal />
+                GitHub
               </a>
               <a href="#top">
-                {c.top} <span aria-hidden="true">↑</span>
+                {c.top}
               </a>
             </nav>
           </footer>

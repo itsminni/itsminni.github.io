@@ -13,9 +13,14 @@ for (const language of ["it", "en"]) {
   test(`${path} delivers portfolio content in the initial HTML`, () => {
     assert.match(html, new RegExp(`<html lang="${language}">`));
     assert.match(html, /<div id="root" data-prerendered="true">/);
-    for (const text of ["Gabriele", "Mininni.", "Giano", "Fyre", "ArtHint", "Telegram", "Computer Science", "SORINT", "QUIX", "minni.code@icloud.com"]) {
+    for (const text of ["Gabriele", "Mininni", "Giano", "Fyre", "ArtHint", "Telegram", "Computer Science", "SORINT", "QUIX", "minni.code@icloud.com"]) {
       assert.ok(html.includes(text), `Missing portfolio content: ${text}`);
     }
+    assert.doesNotMatch(html, /Mininni\./);
+    for (const label of ["01 / PROGETTI", "02 / CHI SONO", "03 / PERCORSO", "04 / ALTRE ATTIVITÀ", "05 / CONTATTI", "01 / PROJECTS", "02 / ABOUT", "03 / BACKGROUND", "04 / OTHER ACTIVITIES", "05 / CONTACT"]) {
+      assert.ok(!html.includes(label), `Unexpected numbered section label: ${label}`);
+    }
+    assert.doesNotMatch(html, /[→↗⇢⤴↑]/);
     for (const id of ["main", "projects", "about", "background", "activities", "contact"]) {
       assert.ok(html.includes(`id="${id}"`), `Missing section: ${id}`);
     }

@@ -44,6 +44,7 @@ button {
 }
 a {
   color: inherit;
+  cursor: pointer;
   text-decoration: none;
 }
 button {
@@ -92,19 +93,6 @@ img {
   letter-spacing: 0.12em;
   line-height: 1.6;
   font-weight: 400;
-}
-.arrow {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  flex-shrink: 0;
-  font-size: 22px;
-  transition: transform 0.2s;
-}
-.text-link:hover .arrow,
-.primary-link:hover .arrow,
-.email-link:hover .arrow {
-  transform: translate(3px, -2px);
 }
 .skip-link {
   position: fixed;
@@ -229,7 +217,6 @@ h1 > span {
   padding: 16px 21px;
   display: inline-flex;
   align-items: center;
-  gap: 24px;
   font-weight: 500;
 }
 .primary-link:hover {
@@ -238,11 +225,16 @@ h1 > span {
 .text-link {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
   font-size: 13px;
 }
+.text-link:hover,
+.email-link:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 .section {
-  padding: 64px 0 76px;
+  padding: 40px 0 48px;
   border-top: 1px solid var(--line);
 }
 .section-heading {
@@ -250,7 +242,7 @@ h1 > span {
   justify-content: space-between;
   align-items: flex-end;
   gap: 32px;
-  margin-bottom: 34px;
+  margin-bottom: 18px;
 }
 .section .eyebrow {
   color: var(--muted);
@@ -263,7 +255,7 @@ h2 {
 }
 .section-heading h2,
 .background-heading h2 {
-  margin-top: 16px;
+  margin-top: 0;
 }
 .project-grid {
   display: grid;
@@ -314,26 +306,6 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.visual-arrow {
-  position: absolute;
-  right: 18px;
-  top: 18px;
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  background: #14171660;
-  border: 1px solid #ffffff30;
-  border-radius: 50%;
-  transition:
-    background 0.2s,
-    transform 0.2s;
-}
-.visual-button:hover .visual-arrow {
-  background: #eeeee8;
-  color: #141716;
-  transform: rotate(45deg);
 }
 .visual-caption {
   position: absolute;
@@ -448,16 +420,12 @@ h2 {
 .detail-button {
   display: flex;
   align-items: center;
-  gap: 10px;
   font-size: 11px;
   white-space: nowrap;
   padding: 7px 0;
 }
 .detail-button:hover {
   color: var(--accent);
-}
-.detail-button .arrow {
-  font-size: 18px;
 }
 .other-projects {
   display: grid;
@@ -474,7 +442,6 @@ h2 {
 }
 .other-projects ul {
   display: grid;
-  gap: 22px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -484,6 +451,14 @@ h2 {
   grid-template-columns: 130px minmax(0, 1fr);
   gap: 24px;
   align-items: start;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+}
+.other-projects li:first-child {
+  padding-top: 0;
+}
+.other-projects li:last-child {
+  border-bottom: 0;
 }
 .other-projects h4 {
   margin: 0;
@@ -502,30 +477,24 @@ h2 {
   line-height: 1.75;
   color: var(--muted);
 }
-.about {
-  padding-top: 56px;
-  padding-bottom: 64px;
-}
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 60px;
-  margin-top: 28px;
+  margin-top: 0;
 }
 .about h2 {
   font-size: 36px;
   line-height: 1.3;
   white-space: pre-line;
   max-width: 490px;
+  margin-bottom: 18px;
 }
 .about-copy > p {
   font-size: 15px;
   line-height: 1.85;
   color: #b2b9b1;
-  margin-bottom: 18px;
-}
-.about-copy > p:first-of-type {
-  margin-top: 22px;
+  margin-bottom: 8px;
 }
 .toolkit {
   min-width: 0;
@@ -571,6 +540,9 @@ h2 {
   padding: 26px 0;
   border-bottom: 1px solid var(--line);
 }
+.journey li:last-child {
+  border-bottom: 0;
+}
 .journey li:first-child {
   padding-top: 0;
 }
@@ -599,7 +571,6 @@ h2 {
   margin-top: 14px;
   display: flex;
   width: fit-content;
-  gap: 20px;
 }
 .activity-list {
   display: grid;
@@ -643,17 +614,12 @@ h2 {
   margin-top: 12px;
   display: flex;
   width: fit-content;
-  gap: 20px;
-}
-.contact {
-  padding-top: 66px;
-  padding-bottom: 70px;
 }
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 75px;
-  margin-top: 25px;
+  margin-top: 0;
 }
 .contact h2 {
   font-size: 64px;
@@ -669,7 +635,6 @@ h2 {
 .email-link {
   display: inline-flex;
   align-items: center;
-  gap: 26px;
   font-size: 23px;
   letter-spacing: -0.6px;
   padding: 15px 0 10px;
@@ -700,16 +665,12 @@ h2 {
 .footer-links a {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   min-height: 36px;
   font-size: 12px;
   color: #c1c8bf;
 }
 .footer-links a:hover {
   color: var(--accent);
-}
-.footer .arrow {
-  font-size: 16px;
 }
 .project-dialog {
   padding: 0;
@@ -885,11 +846,12 @@ h2 {
     margin-top: 25px;
   }
   .section {
-    padding: 45px 0 52px;
+    padding: 34px 0 40px;
   }
   .section-heading {
     align-items: flex-start;
     gap: 20px;
+    margin-bottom: 18px;
   }
   .project-grid {
     gap: 36px 20px;
@@ -946,14 +908,14 @@ h2 {
   }
   .background {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 18px;
   }
   .journey li {
     grid-template-columns: 125px 1fr;
   }
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 22px;
+    gap: 18px;
   }
   .contact h2 {
     font-size: 56px;
@@ -1034,19 +996,17 @@ h2 {
   }
   .primary-link {
     padding: 14px 16px;
-    gap: 17px;
   }
   .hero-links .text-link {
     font-size: 12px;
-    gap: 8px;
+  }
+  .section {
+    padding: 30px 0 36px;
   }
   .section-heading {
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 27px;
-  }
-  .section-heading h2 {
-    margin-top: 13px;
+    margin-bottom: 18px;
   }
   h2 {
     font-size: 32px;

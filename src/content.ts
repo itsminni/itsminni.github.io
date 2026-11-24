@@ -24,7 +24,6 @@ export type Content = {
   bio: string;
   explore: string;
   contact: string;
-  selected: string;
   projectsTitle: string;
   featuredProjectsTitle: string;
   otherProjectsTitle: string;
@@ -38,12 +37,10 @@ export type Content = {
   close: string;
   role: string;
   resultsTitle: string;
-  aboutLabel: string;
   aboutTitle: string;
   about: string[];
   toolkit: string;
   skills: { label: string; value: string }[];
-  journeyLabel: string;
   journeyTitle: string;
   journey: {
     date: string;
@@ -53,7 +50,6 @@ export type Content = {
     link?: { label: string; href: string };
     links?: { label: string; href: string }[];
   }[];
-  activitiesLabel: string;
   activitiesTitle: string;
   activities: {
     date: string;
@@ -63,7 +59,6 @@ export type Content = {
     link?: { label: string; href: string };
     links?: { label: string; href: string }[];
   }[];
-  contactLabel: string;
   contactTitle: string;
   contactText: string;
   top: string;
@@ -74,11 +69,10 @@ export const content: Record<Language, Content> = {
   it: {
     nav: ["Progetti", "Chi sono", "Percorso", "Contatti"],
     skip: "Vai al contenuto",
-    headline: ["Gabriele", "Mininni."],
+    headline: ["Gabriele", "Mininni"],
     bio: "Studente al primo anno di Computer Science all’Università di Trento, con esperienza in ricerca sul machine learning e sviluppo di applicazioni.",
     explore: "Progetti",
     contact: "Scrivimi",
-    selected: "01 / PROGETTI",
     projectsTitle: "Progetti",
     featuredProjectsTitle: "Progetti principali",
     otherProjectsTitle: "Altri progetti",
@@ -101,7 +95,6 @@ export const content: Record<Language, Content> = {
     close: "Chiudi",
     role: "Il mio contributo",
     resultsTitle: "Risultati del benchmark",
-    aboutLabel: "02 / CHI SONO",
     aboutTitle: "Profilo e interessi.",
     about: [
       "Mi interessano l’ingegneria del software, il machine learning e le loro applicazioni pratiche.",
@@ -125,7 +118,6 @@ export const content: Record<Language, Content> = {
         value: "Italiano: madrelingua · Inglese: Cambridge C1 Advanced",
       },
     ],
-    journeyLabel: "03 / PERCORSO",
     journeyTitle: "Studi ed esperienze",
     journey: [
       {
@@ -176,7 +168,6 @@ export const content: Record<Language, Content> = {
         description: "Diploma di liceo scientifico, opzione scienze applicate.",
       },
     ],
-    activitiesLabel: "04 / ALTRE ATTIVITÀ",
     activitiesTitle: "Attività selezionate",
     // Selected activities in reverse chronology.
     activities: [
@@ -230,7 +221,6 @@ export const content: Record<Language, Content> = {
         },
       },
     ],
-    contactLabel: "05 / CONTATTI",
     contactTitle: "Contatti",
     contactText: "Puoi contattarmi via email.",
     top: "Torna su",
@@ -307,11 +297,10 @@ export const content: Record<Language, Content> = {
   en: {
     nav: ["Projects", "About", "Background", "Contact"],
     skip: "Skip to content",
-    headline: ["Gabriele", "Mininni."],
+    headline: ["Gabriele", "Mininni"],
     bio: "First-year Computer Science student at the University of Trento, with practical experience in machine learning research and application development.",
     explore: "Projects",
     contact: "Get in touch",
-    selected: "01 / PROJECTS",
     projectsTitle: "Projects",
     featuredProjectsTitle: "Featured projects",
     otherProjectsTitle: "Other projects",
@@ -334,7 +323,6 @@ export const content: Record<Language, Content> = {
     close: "Close",
     role: "My contribution",
     resultsTitle: "Benchmark results",
-    aboutLabel: "02 / ABOUT",
     aboutTitle: "Profile and interests.",
     about: [
       "I’m interested in software engineering, machine learning and their practical applications.",
@@ -358,7 +346,6 @@ export const content: Record<Language, Content> = {
         value: "Italian: native · English: Cambridge C1 Advanced",
       },
     ],
-    journeyLabel: "03 / BACKGROUND",
     journeyTitle: "Education & experience",
     journey: [
       {
@@ -408,7 +395,6 @@ export const content: Record<Language, Content> = {
         description: "Scientific high-school diploma, applied-sciences track.",
       },
     ],
-    activitiesLabel: "04 / OTHER ACTIVITIES",
     activitiesTitle: "Selected activities",
     // Selected activities in reverse chronology.
     activities: [
@@ -462,7 +448,6 @@ export const content: Record<Language, Content> = {
         },
       },
     ],
-    contactLabel: "05 / CONTACT",
     contactTitle: "Contact",
     contactText: "You can contact me by email.",
     top: "Back to top",
