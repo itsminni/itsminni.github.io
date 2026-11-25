@@ -119,7 +119,7 @@ export const content: Record<Language, Content> = {
     journey: [
       {
         date: "2026 — oggi",
-        title: "Computer Science",
+        title: "Laurea in Computer Science",
         place: "Università di Trento",
         description:
           "Laurea triennale in corso, con insegnamenti in lingua inglese.",
@@ -347,7 +347,7 @@ export const content: Record<Language, Content> = {
     journey: [
       {
         date: "2026 — present",
-        title: "Computer Science",
+        title: "BSc in Computer Science",
         place: "University of Trento",
         description: "BSc in progress, taught in English.",
       },
