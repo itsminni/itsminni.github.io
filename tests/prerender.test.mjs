@@ -27,14 +27,27 @@ for (const language of ["it", "en"]) {
     assert.doesNotMatch(html, /<!--app-html-->|\/src\/main\.tsx/);
   });
 
-  test(`${path} includes project details and unchanged benchmark values without JavaScript`, () => {
+  test(`${path} includes project details and the Giano 2.0 evaluation without JavaScript`, () => {
     assert.equal((html.match(/<details class="project-fallback">/g) ?? []).length, 2);
     for (const text of ["BiLSTM", "Meteotrentino", "ERA5", "ImputeFormer", "SwiftUI", "Kotlin", "Appwrite"]) {
       assert.ok(html.includes(text), `Missing project detail: ${text}`);
     }
-    for (const value of ["20.4", "22.2", "48.3", "15.7", "17.1", "45.3"]) {
-      assert.ok(html.includes(`${language === "it" ? value.replace(".", ",") : value}%`));
+    const giano = html.split('id="project-details-giano"')[1]?.split("</details>")[0];
+    assert.ok(giano, "Missing Giano project details");
+    const fyre = html.split('id="project-details-fyre"')[1]?.split("</details>")[0];
+    assert.ok(fyre, "Missing Fyre project details");
+    for (const [details, count] of [[giano, 4], [fyre, 3]]) {
+      const highlights = details.match(/<ul class="dialog-list">([\s\S]*?)<\/ul>/)?.[1];
+      assert.ok(highlights, "Missing project highlights list");
+      assert.equal((highlights.match(/<li>/g) ?? []).length, count);
     }
+    for (const [value, unit] of [["1.894", "°C"], ["12.573", "%"], ["4.358", "hPa"], ["0.112", "mm"]]) {
+      const formatted = language === "it" ? value.replace(".", ",") : value;
+      assert.ok(giano.includes(`${formatted} ${unit}`), `Missing evaluation value: ${formatted} ${unit}`);
+    }
+    assert.match(giano, /<dd>432<\/dd>/);
+    assert.match(giano, /<dd>16<\/dd>/);
+    assert.ok(giano.includes("https://github.com/itsminni/giano/releases/tag/v2.0.0"));
   });
 
   test(`${path} links to both static language versions`, () => {

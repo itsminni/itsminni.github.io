@@ -67,11 +67,11 @@ function ProjectDetails({
         <span className="eyebrow">{c.role}</span>
         <p>{project.role}</p>
       </div>
-      {project.paragraphs.map((paragraph) => (
-        <p className="dialog-paragraph" key={paragraph}>
-          {paragraph}
-        </p>
-      ))}
+      <ul className="dialog-list">
+        {project.highlights.map((highlight) => (
+          <li key={highlight}>{highlight}</li>
+        ))}
+      </ul>
       {project.results && (
         <section
           className="project-results"
@@ -99,11 +99,6 @@ function ProjectDetails({
           ))}
         </section>
       )}
-      <div className="tags">
-        {project.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
-      </div>
       {project.links.length > 0 && (
         <div className="dialog-links">
           {project.links.map((link) => (
@@ -169,8 +164,8 @@ function ProjectDialog({
       }}
     >
       <div className="dialog-content">
-        <div className="dialog-top">
-          <span className="eyebrow">{project.category}</span>
+        <div className="dialog-heading">
+          <h2 id="dialog-title">{project.name}</h2>
           <button
             type="button"
             className="close-button"
@@ -180,7 +175,6 @@ function ProjectDialog({
             {c.close} <span aria-hidden="true">×</span>
           </button>
         </div>
-        <h2 id="dialog-title">{project.name}</h2>
         <p className="dialog-period">{project.period}</p>
         <ProjectDetails project={project} language={language} idPrefix="dialog" />
       </div>
@@ -195,7 +189,7 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const c = content[language];
   const selectedProject = c.projects.find(
-    (project) => project.id === activeProject && project.paragraphs.length > 0,
+    (project) => project.id === activeProject && project.highlights.length > 0,
   );
 
   useEffect(() => {
@@ -290,6 +284,14 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
             ))}
           </nav>
           <div className="header-actions">
+            <a
+              className="github-link"
+              href="https://github.com/itsminni"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
             <div
               className="language-switch"
               aria-label={language === "it" ? "Lingua" : "Language"}
@@ -389,34 +391,11 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
                     <ProjectVisual id={project.id} />
                   </a>
                   <div className="project-info">
-                    <div className="project-meta">
-                      <span>{project.category}</span>
-                      <span>{project.number}</span>
-                    </div>
                     <div className="project-title-row">
                       <h4>{project.name}</h4>
                       <span className="project-period">{project.period}</span>
                     </div>
                     <p className="project-description">{project.description}</p>
-                    <div className="project-bottom">
-                      <div className="tags">
-                        {project.tags.map((tag) => (
-                          <span key={tag}>{tag}</span>
-                        ))}
-                      </div>
-                      <a
-                        href={`#project-details-${project.id}`}
-                        className="detail-button"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          setActiveProject(project.id);
-                        }}
-                        aria-label={`${c.details}: ${project.name}`}
-                        aria-haspopup={languageReady ? "dialog" : undefined}
-                      >
-                        <span>{c.details}</span>
-                      </a>
-                    </div>
                   </div>
                   <details className="project-fallback">
                     <summary>{c.details}</summary>
@@ -581,28 +560,6 @@ function App({ initialLanguage = "it" }: { initialLanguage?: Language }) {
               </div>
             </div>
           </section>
-          <footer className="footer">
-            <nav
-              className="footer-links"
-              aria-label={
-                language === "it" ? "Link di fine pagina" : "Footer links"
-              }
-            >
-              <a href={`mailto:${email}`}>
-                Email
-              </a>
-              <a
-                href="https://github.com/itsminni"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a href="#top">
-                {c.top}
-              </a>
-            </nav>
-          </footer>
         </div>
       </main>
       {selectedProject && (

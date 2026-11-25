@@ -151,6 +151,13 @@ img {
 .navigation a:hover {
   color: var(--text);
 }
+.github-link {
+  font-size: 13px;
+  color: #b6bbb7;
+}
+.github-link:hover {
+  color: var(--text);
+}
 .header-actions {
   display: flex;
   align-items: center;
@@ -228,8 +235,7 @@ h1 > span {
   font-size: 13px;
 }
 .text-link:hover,
-.email-link:hover,
-.footer-links a:hover {
+.email-link:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -286,9 +292,6 @@ h2 {
 .project-fallback summary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 6px;
-}
-.project-fallback .tags {
-  margin-top: 24px;
 }
 .visual-button {
   padding: 0;
@@ -364,20 +367,11 @@ h2 {
 .project-info {
   padding: 22px 2px 0;
 }
-.project-meta {
-  display: flex;
-  justify-content: space-between;
-  color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-}
 .project-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  margin-top: 13px;
 }
 .project-title-row h4 {
   margin: 0;
@@ -396,36 +390,6 @@ h2 {
   color: #aeb5ae;
   margin-top: 12px;
   max-width: 490px;
-  min-height: 74px;
-}
-.project-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-top: 19px;
-}
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.tags span {
-  border: 1px solid #3b443d;
-  padding: 5px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  color: #b8c0b6;
-}
-.detail-button {
-  display: flex;
-  align-items: center;
-  font-size: 11px;
-  white-space: nowrap;
-  padding: 7px 0;
-}
-.detail-button:hover {
-  color: var(--accent);
 }
 .other-projects {
   display: grid;
@@ -641,37 +605,6 @@ h2 {
   margin-top: 10px;
   border-bottom: 1px solid #66725f;
 }
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 19px;
-  padding: 24px 0 32px;
-}
-.footer::before {
-  content: "";
-  width: 48px;
-  height: 1px;
-  background: var(--line);
-  margin-bottom: 5px;
-}
-.footer-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-.footer-links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  font-size: 12px;
-  color: #c1c8bf;
-}
-.footer-links a:hover {
-  color: var(--accent);
-}
 .project-dialog {
   padding: 0;
   border: 1px solid #495147;
@@ -691,15 +624,12 @@ h2 {
 .dialog-content {
   padding: 36px 40px 42px;
 }
-.dialog-top {
+.dialog-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
   color: var(--muted);
-}
-.dialog-top .eyebrow {
-  font-size: 10px;
 }
 .close-button {
   display: flex;
@@ -711,9 +641,10 @@ h2 {
 .close-button span {
   font-size: 25px;
 }
-.dialog-content h2 {
+.dialog-heading h2 {
+  min-width: 0;
+  margin: 0;
   font-size: 58px;
-  margin-top: 24px;
 }
 .dialog-period {
   font-size: 13px;
@@ -733,14 +664,19 @@ h2 {
   margin-top: 8px;
   color: var(--accent);
 }
-.dialog-paragraph {
+.dialog-list {
+  margin: 0 0 18px;
+  padding-inline-start: 1.25em;
+  list-style: disc;
   font-size: 15px;
   line-height: 1.85;
   color: #b6bdb4;
-  margin-bottom: 18px;
 }
-.dialog-content > .tags {
-  margin-top: 25px;
+.dialog-list li + li {
+  margin-top: 10px;
+}
+.dialog-list li::marker {
+  color: var(--accent);
 }
 .dialog-links {
   display: flex;
@@ -769,14 +705,6 @@ h2 {
   .navigation {
     margin-right: 10px;
     gap: 25px;
-  }
-  .project-bottom {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .project-description {
-    min-height: 98px;
   }
   .about-grid,
   .contact-grid {
@@ -873,9 +801,6 @@ h2 {
     font-size: 54px;
     letter-spacing: -3px;
   }
-  .project-meta {
-    font-size: 8px;
-  }
   .project-title-row {
     align-items: flex-start;
     flex-direction: column;
@@ -886,10 +811,6 @@ h2 {
   }
   .project-description {
     font-size: 13px;
-    min-height: 116px;
-  }
-  .tags span {
-    font-size: 9px;
   }
   .about-grid {
     grid-template-columns: 1fr;
@@ -1037,33 +958,14 @@ h2 {
   .project-title-row {
     flex-direction: row;
     align-items: center;
-    margin-top: 12px;
   }
   .project-title-row h4 {
     font-size: 26px;
-  }
-  .project-meta {
-    font-size: 8px;
   }
   .project-description {
     min-height: 0;
     margin-top: 11px;
     font-size: 14px;
-  }
-  .project-bottom {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    margin-top: 17px;
-  }
-  .detail-button > span:first-child {
-    display: none;
-  }
-  .detail-button {
-    padding: 8px;
-  }
-  .tags span {
-    font-size: 10px;
   }
   .about h2 {
     font-size: 30px;
@@ -1101,13 +1003,10 @@ h2 {
   .dialog-content {
     padding: 22px 23px 30px;
   }
-  .dialog-content h2 {
+  .dialog-heading h2 {
     font-size: 45px;
   }
-  .dialog-top .eyebrow {
-    font-size: 8px;
-  }
-  .dialog-paragraph {
+  .dialog-list {
     font-size: 14px;
   }
   .dialog-role > p {
@@ -1134,9 +1033,6 @@ h2 {
 @media (max-width: 560px) {
   .activity-list {
     grid-template-columns: 1fr;
-  }
-  .footer-links {
-    gap: 22px;
   }
 }
 

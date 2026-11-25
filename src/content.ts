@@ -1,14 +1,12 @@
 export type Language = "it" | "en";
 export type Project = {
   id: string;
-  number: string;
+
   name: string;
-  category: string;
   period: string;
   description: string;
-  tags: string[];
   role: string;
-  paragraphs: string[];
+  highlights: string[];
   links: { label: string; href: string }[];
   results?: {
     title: string;
@@ -61,7 +59,6 @@ export type Content = {
   }[];
   contactTitle: string;
   contactText: string;
-  top: string;
   projects: Project[];
 };
 
@@ -91,13 +88,13 @@ export const content: Record<Language, Content> = {
         description: "Bot Telegram per uso personale, sviluppato in Python.",
       },
     ],
-    details: "Il progetto",
+    details: "Dettagli",
     close: "Chiudi",
     role: "Il mio contributo",
     resultsTitle: "Risultati del benchmark",
     aboutTitle: "Profilo e interessi.",
     about: [
-      "Mi interessano l’ingegneria del software, il machine learning e le loro applicazioni pratiche.",
+      "Mi interessano l’ingegneria del software e il machine learning, soprattutto per le loro applicazioni nelle scienze naturali.",
       "La ricerca e lo sviluppo di app in gruppo sono un modo per costruire strumenti utili, confrontare le scelte tecniche ed esplorare ambiti diversi dell’informatica.",
     ],
     toolkit: "Competenze",
@@ -223,43 +220,40 @@ export const content: Record<Language, Content> = {
     ],
     contactTitle: "Contatti",
     contactText: "Puoi contattarmi via email.",
-    top: "Torna su",
     projects: [
       {
         id: "giano",
-        number: "01",
+
         name: "Giano",
-        category: "MACHINE LEARNING · RICERCA",
         period: "2025 — 2026",
         description:
-          "Modello per la ricostruzione dei dati mancanti delle stazioni meteorologiche, nato a FBK WebValley e sviluppato con il team Giano, finalista al Premio Marilli.",
-        tags: ["Python", "PyTorch", "ImputeFormer"],
+          "Progetto di ricostruzione dei dati mancanti delle stazioni meteorologiche, nato a FBK WebValley. La versione 2.0 usa un modello multivariabile. Giano è arrivato in finale al Premio G.F. Marilli 2026.",
         role: "Ricerca, sviluppo del modello e sito web",
-        paragraphs: [
-          "Sviluppo con il team di un primo modello BiLSTM durante WebValley 2025, utilizzando osservazioni Meteotrentino e dati ERA5. Successivo coordinamento dell’evoluzione del progetto verso ImputeFormer.",
+        highlights: [
+          "Sviluppo con il team del prototipo BiLSTM a WebValley 2025, usando osservazioni Meteotrentino e dati ERA5. Coordinamento della successiva evoluzione verso un ensemble multivariabile basato su ImputeFormer.",
           "Partecipazione a un percorso laboratoriale con psicologi e designer di Artigianelli su UX design, lavoro di squadra e public speaking, applicati allo sviluppo del progetto.",
-          "Valutazione su sei variabili meteorologiche, 13 tipologie di lacune e cinque seed di training in un benchmark riproducibile, con confronto rispetto a BiLSTM e interpolazione.",
-          "Sviluppo del sito di Giano per esplorare le stazioni e confrontare i dati osservati con quelli ricostruiti, rendendo consultabili i risultati insieme al codice e agli esperimenti del progetto.",
+          "Pubblicazione di pesi, codice e notebook per riprodurre addestramento, ricostruzione e valutazione.",
+          "Sviluppo del sito bilingue per esplorare le stazioni e confrontare le misure con i valori ricostruiti.",
         ],
         results: [
           {
-            title: "Ricostruzione dei dati mancanti",
+            title: "Ricostruzione in Trentino",
             description:
-              "Su lacune consecutive di 24 ore, riduzione dell’errore medio assoluto (MAE) rispetto a BiLSTM nel confronto a parità di condizioni.",
+              "Errore medio assoluto sulle ore nascoste in 480 interruzioni simulate nel 2020, da 1 ora a 90 giorni, con contesto locale e riferimento di stazione attivi. L’errore dell’umidità è in punti percentuali.",
             metrics: [
-              { label: "Temperatura", value: "20,4%" },
-              { label: "Umidità", value: "22,2%" },
-              { label: "Pressione", value: "48,3%" },
+              { label: "Temperatura", value: "1,894 °C" },
+              { label: "Umidità relativa", value: "12,573 %" },
+              { label: "Pressione", value: "4,358 hPa" },
+              { label: "Precipitazione", value: "0,112 mm" },
             ],
           },
           {
-            title: "Effetto sulle previsioni",
+            title: "Test su stazioni tedesche nel 2026",
             description:
-              "Riduzione del MAE nelle previsioni usando le serie storiche ricostruite, rispetto alle serie con dati mancanti.",
+              "Con le stazioni vicine attive, Giano ha ridotto l’errore rispetto all’interpolazione per tutte e sei le variabili nei buchi di 7, 30 e 90 giorni.",
             metrics: [
-              { label: "Temperatura", value: "15,7%" },
-              { label: "Umidità", value: "17,1%" },
-              { label: "Pressione", value: "45,3%" },
+              { label: "Stazioni", value: "16" },
+              { label: "Interruzioni simulate", value: "432" },
             ],
           },
         ],
@@ -272,21 +266,24 @@ export const content: Record<Language, Content> = {
             label: "Codice su GitHub",
             href: "https://github.com/itsminni/giano",
           },
+          {
+            label: "Release 2.0",
+            href: "https://github.com/itsminni/giano/releases/tag/v2.0.0",
+          },
         ],
       },
       {
         id: "fyre",
-        number: "02",
+
         name: "Fyre",
-        category: "APP · IOS, ANDROID & WEB",
         period: "2026",
         description:
-          "App per conoscere persone e organizzare eventi, con sviluppo del client iOS e contributi al backend e alla progettazione dell’interfaccia.",
-        tags: ["SwiftUI", "Appwrite", "UI/UX"],
-        role: "Direzione tecnica e di prodotto, sviluppo iOS",
-        paragraphs: [
-          "Il team sviluppa client Swift/SwiftUI per iOS, Kotlin/Jetpack Compose per Android e React/TypeScript per il web. Il mio contributo comprende la direzione tecnica e di prodotto, la progettazione dell’interfaccia e lo sviluppo del client iOS.",
-          "Contributo alla struttura del backend Appwrite per utenti, matching, chat ed eventi e alla definizione di contratti condivisi, test automatici, linting, build di rilascio e CI per backend e client web, Android e iOS.",
+          "App per conoscere persone, chattare e organizzare eventi. Un progetto di gruppo per iOS, Android e web.",
+        role: "Architettura, UI/UX, sviluppo iOS e backend",
+        highlights: [
+          "Ho contribuito a definire l’architettura di Fyre e le scelte di design che guidano l’esperienza d’uso.",
+          "Ho sviluppato l’app iOS in Swift e SwiftUI e ho gestito il backend su Appwrite.",
+          "Il resto del team ha sviluppato l’app Android in Kotlin e la versione web.",
         ],
         links: [
           { label: "Codice su GitHub", href: "https://github.com/itsminni/fyre" },
@@ -319,13 +316,13 @@ export const content: Record<Language, Content> = {
         description: "Telegram bot for personal use, built with Python.",
       },
     ],
-    details: "About the project",
+    details: "Details",
     close: "Close",
     role: "My contribution",
     resultsTitle: "Benchmark results",
     aboutTitle: "Profile and interests.",
     about: [
-      "I’m interested in software engineering, machine learning and their practical applications.",
+      "I’m interested in software engineering and machine learning, particularly their applications in the natural sciences.",
       "Research and collaborative app development are ways to build useful tools, discuss technical choices and explore different areas of computer science.",
     ],
     toolkit: "Skills",
@@ -450,43 +447,40 @@ export const content: Record<Language, Content> = {
     ],
     contactTitle: "Contact",
     contactText: "You can contact me by email.",
-    top: "Back to top",
     projects: [
       {
         id: "giano",
-        number: "01",
+
         name: "Giano",
-        category: "MACHINE LEARNING · RESEARCH",
         period: "2025 — 2026",
         description:
-          "Model for reconstructing missing weather station data, started at FBK WebValley and developed with the Giano team, a finalist for the Premio Marilli.",
-        tags: ["Python", "PyTorch", "ImputeFormer"],
+          "A project to reconstruct missing weather station data, started at FBK WebValley. Version 2.0 uses a multivariate model. Giano reached the final of the Premio G.F. Marilli 2026.",
         role: "Research, model development and website",
-        paragraphs: [
-          "Development of an initial BiLSTM model with the team during WebValley 2025, using Meteotrentino observations and ERA5 data. Subsequent coordination of the project’s evolution toward ImputeFormer.",
+        highlights: [
+          "Development of the BiLSTM prototype with the team at WebValley 2025 using Meteotrentino observations and ERA5 data. Coordination of the subsequent move to a multivariate ensemble based on ImputeFormer.",
           "Participation in a workshop programme with psychologists and Artigianelli designers on UX design, teamwork and public speaking, applied to developing the project.",
-          "Evaluation across six weather variables, 13 gap patterns and five training seeds in a reproducible benchmark, comparing the model with BiLSTM and interpolation.",
-          "Development of the Giano website for exploring stations and comparing observed and reconstructed data, making results available alongside the project’s code and experiments.",
+          "Publication of model weights, code and notebooks to reproduce training, reconstruction and evaluation.",
+          "Development of the bilingual website to explore stations and compare measurements with reconstructed values.",
         ],
         results: [
           {
-            title: "Reconstructing missing data",
+            title: "Gap filling in Trentino",
             description:
-              "On consecutive 24-hour gaps, reduction in mean absolute error (MAE) compared with BiLSTM under the same evaluation conditions.",
+              "Mean absolute error on the hidden observations from 480 simulated outages in 2020, lasting from one hour to 90 days, with both station options enabled. Humidity error is measured in percentage points.",
             metrics: [
-              { label: "Temperature", value: "20.4%" },
-              { label: "Humidity", value: "22.2%" },
-              { label: "Pressure", value: "48.3%" },
+              { label: "Temperature", value: "1.894 °C" },
+              { label: "Relative humidity", value: "12.573 %" },
+              { label: "Pressure", value: "4.358 hPa" },
+              { label: "Precipitation", value: "0.112 mm" },
             ],
           },
           {
-            title: "Effect on forecasting",
+            title: "2026 test on German stations",
             description:
-              "Reduction in forecast MAE when using reconstructed historical series instead of series with missing data.",
+              "With neighbouring stations reporting, Giano had lower error than interpolation on all six variables for gaps of 7, 30 and 90 days.",
             metrics: [
-              { label: "Temperature", value: "15.7%" },
-              { label: "Humidity", value: "17.1%" },
-              { label: "Pressure", value: "45.3%" },
+              { label: "Stations", value: "16" },
+              { label: "Simulated outages", value: "432" },
             ],
           },
         ],
@@ -499,21 +493,24 @@ export const content: Record<Language, Content> = {
             label: "Code on GitHub",
             href: "https://github.com/itsminni/giano",
           },
+          {
+            label: "Release 2.0",
+            href: "https://github.com/itsminni/giano/releases/tag/v2.0.0",
+          },
         ],
       },
       {
         id: "fyre",
-        number: "02",
+
         name: "Fyre",
-        category: "APP · IOS, ANDROID & WEB",
         period: "2026",
         description:
-          "App for meeting people and organising events, with iOS client development and contributions to the backend and interface design.",
-        tags: ["SwiftUI", "Appwrite", "UI/UX"],
-        role: "Technical and product direction, iOS development",
-        paragraphs: [
-          "The team develops clients in Swift/SwiftUI for iOS, Kotlin/Jetpack Compose for Android and React/TypeScript for the web. My contribution covers technical and product direction, interface design and iOS client development.",
-          "Contribution to the Appwrite backend structure for users, matching, chat and events, and to shared contracts, automated tests, linting, release builds and CI for the backend and web, Android and iOS clients.",
+          "An app for meeting people, chatting and organising events, built as a team for iOS, Android and web.",
+        role: "Architecture, UI/UX, iOS development and backend",
+        highlights: [
+          "I helped define Fyre’s architecture and shape its design and user experience.",
+          "I built the iOS app in Swift and SwiftUI and managed the Appwrite backend.",
+          "The rest of the team built the Android app in Kotlin and the web version.",
         ],
         links: [
           { label: "Code on GitHub", href: "https://github.com/itsminni/fyre" },
